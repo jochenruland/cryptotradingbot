@@ -103,10 +103,10 @@ contract Tradingbot {
   }
 
   // 3. As long as state = State.IDLE the owner can cancel the bot and refund the money
-  function cancelTradingbot() onlyOwner() {
-    require(state == State.IDLE, "Bot has started trading and can not be cancled"
+  function cancelTradingbot() external onlyOwner() {
+    require(state == State.IDLE, "Bot has started trading and can not be cancled");
 
-    _refundInvestors()
+    _refundInvestors();
   }
 
 
@@ -144,7 +144,7 @@ contract Tradingbot {
 
       for(uint i=0; i < nextAssetId; i++) {
         if(assets[i].tokenAddress == _tokenAddress) {
-          assets[i].price = _price;
+          assets[i].lastPrice = _price;
         } else {
           assets[nextAssetId] = Asset(nextAssetId, getTokenSticker(_tokenAddress), _tokenAddress, _price, 0);
           nextAssetId ++;
@@ -244,13 +244,17 @@ contract Tradingbot {
 
   // 7. Liquidate portfolio and return money to investors
   function liquidatePortfolio () external payable onlyOwner() {
+
+
     for(uint i; i < nextAssetId; i++) {
       if(getTokenBalance(assets[i].tokenAddress) > 0) {
+        (bool _success, uint24 _poolFee) = _uniswapV3PoolExists(assets[i].tokenAddress, DAI);
+        require(_success, "Pool does not exist");
 
         uint _amountIn = getTokenBalance(assets[i].tokenAddress);
 
         ISwapRouter.ExactInputSingleParams memory params = ISwapRouter.ExactInputSingleParams({
-          tokenIn: assets[_assetId].tokenAddress,
+          tokenIn: assets[i].tokenAddress,
           tokenOut: DAI,
           fee: _poolFee,
           recipient: address(this),
@@ -263,7 +267,7 @@ contract Tradingbot {
         // Approve the SwapRouter contract for the amount of token to be traded
         IERC20(assets[i].tokenAddress).approve(address(SwapRouter), _amountIn);
 
-        uint _amountOut = SwapRouter.exactInputSingle(params);
+        SwapRouter.exactInputSingle(params);
 
         //Updates the availableFunds of the asset in DAI
         assets[i].availableFunds = 0;
@@ -271,7 +275,7 @@ contract Tradingbot {
         //Calculates the selling price in DAI
         uint _price = 0;
 
-        assets[_assetId].lastPrice = _price;
+        assets[i].lastPrice = _price;
 
       }
     }
@@ -340,9 +344,9 @@ contract Tradingbot {
     require(address(this).balance > 0, "No ether available to be redistributed");
     uint _totalFunds = address(this).balance;
 
-    for(uint i=0; i < nextInvestorId, i++) {
+    for(uint i=0; i < nextInvestorId; i++) {
       uint _refund = _totalFunds * shares[investors[i]] / totalShares;
-      investors[i].transfer(_refund);
+      payable(investors[i]).transfer(_refund);
     }
 
   }
