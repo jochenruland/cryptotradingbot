@@ -29,7 +29,8 @@ contract Tradingbot {
 
   address public owner;
 
-  mapping(uint => mapping(address => uint)) public investorsToShares; // registered investors and shares per investor
+  mapping(uint => address) public investors; // registered investors
+  mapping(address => uint) public shares; // shares per investor
   mapping(uint => Asset) public assets; // registered token to  % of Portfolio
 
   uint public nextInvestorId;
@@ -92,20 +93,21 @@ contract Tradingbot {
     uint amountOut = SwapRouter.exactInputSingle{ value: msg.value }(params);
 
     // an address is registered as an investor if it has contributed the min amount once and nextInvestorId will be incremented
-    nextInvestorId = investorsToShares[nextInvestorId][msg.sender] != 0 ? nextInvestorId++ : nextInvestorId;
+    nextInvestorId = investors[nextInvestorId] != address(0) ? nextInvestorId++ : nextInvestorId;
 
     // an investor can contribute mutiple times; therefore shares neet to be +=;
-    investorsToShares[nextInvestorId][msg.sender] += amountOut;
+    investors[nextInvestorId] = msg.sender;
+    shares[msg.sender] += amountOut;
     totalShares += amountOut;
 
   }
 
   // 3. As long as state = State.IDLE the owner can cancel the bot and refund the money
-  //function cancelTradingbot() onlyOwner() {
-  //  require(state == State.IDLE, "Bot has started trading and can not be cancled"
-  //
-  //  _refundInvestors()  iterate over the nextInvestorId and refund the contract balance in relation to their shares
-  //}
+  function cancelTradingbot() onlyOwner() {
+    require(state == State.IDLE, "Bot has started trading and can not be cancled"
+
+    // _refundInvestors()  iterate over the nextInvestorId and refund the contract balance in relation to their shares
+  }
 
 
   // 4. Initial buy of token to be traded
@@ -247,9 +249,6 @@ contract Tradingbot {
     }
 
     // refundETH
-
-
-
   }
 
   // 8. Some view functions
@@ -279,6 +278,41 @@ contract Tradingbot {
         _poolFee = poolFee_3;
         pool_existence = true;
 
+    }
+
+  }
+
+  function _refundInvestors() private {
+    require(getTokenBalance(DAI) > 0, "No funds to be redistributed");
+
+    (bool _success, uint24 _poolFee) = _uniswapV3PoolExists(DAI, WETH);
+    require(_success, "Pool does not exist");
+
+    uint _amountIn = getTokenBalance(DAI);
+
+    ISwapRouter.ExactInputSingleParams memory params = ISwapRouter.ExactInputSingleParams({
+      tokenIn: DAI,
+      tokenOut: WETH,
+      fee: _poolFee,
+      recipient: address(this),
+      deadline: block.timestamp + 15,
+      amountIn: _amountIn,
+      amountOutMinimum: 1,
+      sqrtPriceLimitX96: 0
+    });
+
+    // Approve the SwapRouter contract for the amount of DAI
+    // I first made an error to approve this contract - that's wrong, the DAI was already tranfered to this contract in contribute()
+    IERC20(DAI).approve(address(SwapRouter), _amountIn);
+
+    SwapRouter.exactInputSingle(params);
+
+    // Save value of contract balance and Calculate share for each investor
+    uint _totalFunds = address(this).balance;
+
+    for(uint i=0; i < nextInvestorId, i++) {
+      uint _refund = _totalFunds * shares[investors[i]] / totalShares;
+      investors[i].transfer(_refund);
     }
 
   }
