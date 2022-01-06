@@ -1,0 +1,16 @@
+{
+  "name": "cryptotradingbot_v1",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@openzeppelin/contracts": "^4.4.1",
+    "@uniswap/v3-periphery": "^1.3.0",
+    "web3": "^1.6.1"
+  }
+}
