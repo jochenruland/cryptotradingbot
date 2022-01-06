@@ -106,7 +106,7 @@ contract Tradingbot {
   function cancelTradingbot() onlyOwner() {
     require(state == State.IDLE, "Bot has started trading and can not be cancled"
 
-    // _refundInvestors()  iterate over the nextInvestorId and refund the contract balance in relation to their shares
+    _refundInvestors()
   }
 
 
@@ -142,8 +142,14 @@ contract Tradingbot {
 
       uint _price = uint(_amountIn / _amountOut);
 
-      assets[nextAssetId] = Asset(nextAssetId, getTokenSticker(_tokenAddress), _tokenAddress, _price, 0);
-      nextAssetId ++;
+      for(uint i=0; i < nextAssetId; i++) {
+        if(assets[i].tokenAddress == _tokenAddress) {
+          assets[i].price = _price;
+        } else {
+          assets[nextAssetId] = Asset(nextAssetId, getTokenSticker(_tokenAddress), _tokenAddress, _price, 0);
+          nextAssetId ++;
+        }
+      }
 
       state = State.TRADING;
 
@@ -240,15 +246,37 @@ contract Tradingbot {
   function liquidatePortfolio () external payable onlyOwner() {
     for(uint i; i < nextAssetId; i++) {
       if(getTokenBalance(assets[i].tokenAddress) > 0) {
-        // sell all token to WETH
+
+        uint _amountIn = getTokenBalance(assets[i].tokenAddress);
+
+        ISwapRouter.ExactInputSingleParams memory params = ISwapRouter.ExactInputSingleParams({
+          tokenIn: assets[_assetId].tokenAddress,
+          tokenOut: DAI,
+          fee: _poolFee,
+          recipient: address(this),
+          deadline: block.timestamp + 15,
+          amountIn: _amountIn,
+          amountOutMinimum: 1,
+          sqrtPriceLimitX96: 0
+        });
+
+        // Approve the SwapRouter contract for the amount of token to be traded
+        IERC20(assets[i].tokenAddress).approve(address(SwapRouter), _amountIn);
+
+        uint _amountOut = SwapRouter.exactInputSingle(params);
+
+        //Updates the availableFunds of the asset in DAI
+        assets[i].availableFunds = 0;
+
+        //Calculates the selling price in DAI
+        uint _price = 0;
+
+        assets[_assetId].lastPrice = _price;
+
       }
     }
 
-    if(getTokenBalance(DAI) > 0) {
-      // sell all DAI to WETH
-    }
-
-    // refundETH
+    _refundInvestors();
   }
 
   // 8. Some view functions
@@ -282,6 +310,7 @@ contract Tradingbot {
 
   }
 
+  // swap DAI to WETH, then iterate over the nextInvestorId and refund the contract balance to the investors in relation to their shares
   function _refundInvestors() private {
     require(getTokenBalance(DAI) > 0, "No funds to be redistributed");
 
@@ -308,6 +337,7 @@ contract Tradingbot {
     SwapRouter.exactInputSingle(params);
 
     // Save value of contract balance and Calculate share for each investor
+    require(address(this).balance > 0, "No ether available to be redistributed");
     uint _totalFunds = address(this).balance;
 
     for(uint i=0; i < nextInvestorId, i++) {
