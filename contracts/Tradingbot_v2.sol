@@ -92,13 +92,13 @@ contract Tradingbot {
 
     uint amountOut = SwapRouter.exactInputSingle{ value: msg.value }(params);
 
-    // an address is registered as an investor if it has contributed the min amount once and nextInvestorId will be incremented
-    nextInvestorId = investors[nextInvestorId] != address(0) ? nextInvestorId++ : nextInvestorId;
-
     // an investor can contribute mutiple times; therefore shares neet to be +=;
     investors[nextInvestorId] = msg.sender;
     shares[msg.sender] += amountOut;
     totalShares += amountOut;
+
+    // an address is registered as an investor if it has contributed the min amount once and nextInvestorId will be incremented
+    nextInvestorId ++;
 
   }
 
