@@ -151,14 +151,8 @@ contract Tradingbot {
 
       uint _price = uint(_amountIn / _amountOut);
 
-      for(uint i=0; i < nextAssetId; i++) {
-        if(assets[i].tokenAddress == _tokenAddress) {
-          assets[i].lastPrice = _price;
-        } else {
-          assets[nextAssetId] = Asset(nextAssetId, getTokenSticker(_tokenAddress), _tokenAddress, _price, 0);
-          nextAssetId ++;
-        }
-      }
+      assets[nextAssetId] = Asset(nextAssetId, getTokenSticker(_tokenAddress), _tokenAddress, _price, 0);
+      nextAssetId ++;
 
       state = State.TRADING;
 
