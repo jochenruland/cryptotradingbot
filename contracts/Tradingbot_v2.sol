@@ -12,6 +12,15 @@ import "https://github.com/Uniswap/v3-periphery/blob/main/contracts/interfaces/I
 import "https://github.com/OpenZeppelin/openzeppelin-contracts/blob/master/contracts/interfaces/IERC20.sol";
 import "https://github.com/OpenZeppelin/openzeppelin-contracts/blob/master/contracts/token/ERC20/extensions/IERC20Metadata.sol";
 
+
+interface IWETH9 {
+    function balanceOf(address account) external view returns (uint256);
+    function deposit() external payable;
+
+    function withdraw(uint256 wad) external;
+}
+
+
 contract Tradingbot {
   enum State {
     IDLE,
