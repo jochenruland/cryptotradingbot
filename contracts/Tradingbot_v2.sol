@@ -358,7 +358,7 @@ contract Tradingbot {
        IWETH9(WETH).withdraw(balanceWETH);
     }
 
-    /*
+
     // Save value of contract balance and Calculate share for each investor
     require(address(this).balance > 0, "No ether available to be redistributed");
     uint _totalFunds = address(this).balance;
@@ -367,7 +367,7 @@ contract Tradingbot {
       uint _refund = _totalFunds * shares[investors[i]] / totalShares;
       payable(investors[i]).transfer(_refund);
     }
-    */
+
 
   }
 
