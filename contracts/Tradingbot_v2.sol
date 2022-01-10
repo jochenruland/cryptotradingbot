@@ -315,7 +315,7 @@ contract Tradingbot {
   }
 
   // swap DAI to WETH, then iterate over the nextInvestorId and refund the contract balance to the investors in relation to their shares
-  function _refundInvestors() private {
+  function _refundInvestors() public payable {
     require(getTokenBalance(DAI) > 0, "No funds to be redistributed");
 
     (bool _success, uint24 _poolFee) = _uniswapV3PoolExists(DAI, WETH);
@@ -340,6 +340,16 @@ contract Tradingbot {
 
     SwapRouter.exactInputSingle(params);
 
+    // Unwrap WETH to ETH and send to this contract
+    uint balanceWETH = IWETH9(WETH).balanceOf(address(this));
+
+    IERC20(WETH).approve(address(this), balanceWETH);
+
+    if (balanceWETH > 0) {
+       IWETH9(WETH).withdraw(balanceWETH);
+    }
+
+    /*
     // Save value of contract balance and Calculate share for each investor
     require(address(this).balance > 0, "No ether available to be redistributed");
     uint _totalFunds = address(this).balance;
@@ -348,6 +358,7 @@ contract Tradingbot {
       uint _refund = _totalFunds * shares[investors[i]] / totalShares;
       payable(investors[i]).transfer(_refund);
     }
+    */
 
   }
 
