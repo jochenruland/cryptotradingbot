@@ -1,2 +1,4 @@
 contracts/Tradingbot_v1.sol
 Tutorial.md
+test/Tradingbot.test.js
+.secret
