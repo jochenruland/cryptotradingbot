@@ -6,11 +6,11 @@ pragma solidity ^0.8.0;
 // - DAO Investment concept
 // - Integration of Uniswap as DEX to trade on
 
-import "https://github.com/Uniswap/v3-core/blob/main/contracts/interfaces/IUniswapV3Factory.sol";
-import "https://github.com/Uniswap/v3-periphery/blob/main/contracts/interfaces/ISwapRouter.sol";
+import "@uniswap/v3-core/blob/main/contracts/interfaces/IUniswapV3Factory.sol";
+import "@uniswap/v3-periphery/blob/main/contracts/interfaces/ISwapRouter.sol";
 
-import "https://github.com/OpenZeppelin/openzeppelin-contracts/blob/master/contracts/interfaces/IERC20.sol";
-import "https://github.com/OpenZeppelin/openzeppelin-contracts/blob/master/contracts/token/ERC20/extensions/IERC20Metadata.sol";
+import "@openzeppelin/contracts/interfaces/IERC20.sol";
+import "@openzeppelin/contracts/token/ERC20/extensions/IERC20Metadata.sol";
 
 
 interface IWETH9 {
@@ -124,7 +124,7 @@ contract Tradingbot {
 
     _refundInvestors();
 
-    _reset()
+    _reset();
   }
 
 
