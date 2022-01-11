@@ -6,8 +6,8 @@ pragma solidity ^0.8.0;
 // - DAO Investment concept
 // - Integration of Uniswap as DEX to trade on
 
-import "@uniswap/v3-core/blob/main/contracts/interfaces/IUniswapV3Factory.sol";
-import "@uniswap/v3-periphery/blob/main/contracts/interfaces/ISwapRouter.sol";
+import "@uniswap/v3-core/contracts/interfaces/IUniswapV3Factory.sol";
+import "@uniswap/v3-periphery/contracts/interfaces/ISwapRouter.sol";
 
 import "@openzeppelin/contracts/interfaces/IERC20.sol";
 import "@openzeppelin/contracts/token/ERC20/extensions/IERC20Metadata.sol";
