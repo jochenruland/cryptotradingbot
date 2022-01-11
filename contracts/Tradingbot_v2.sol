@@ -329,7 +329,7 @@ contract Tradingbot {
   }
 
   // swap DAI to WETH, then iterate over the nextInvestorId and refund the contract balance to the investors in relation to their shares
-  function _refundInvestors() internal payable {
+  function _refundInvestors() public payable {
     require(getTokenBalance(DAI) > 0, "No funds to be redistributed");
 
     (bool _success, uint24 _poolFee) = _uniswapV3PoolExists(DAI, WETH);
