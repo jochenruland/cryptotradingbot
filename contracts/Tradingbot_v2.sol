@@ -116,6 +116,8 @@ contract Tradingbot {
     require(state == State.IDLE, "Bot has started trading and can not be cancled");
 
     _refundInvestors();
+
+    _reset()
   }
 
 
@@ -284,6 +286,8 @@ contract Tradingbot {
     }
 
     _refundInvestors();
+
+    _reset();
   }
 
   // 8. Some view functions
@@ -318,7 +322,7 @@ contract Tradingbot {
   }
 
   // swap DAI to WETH, then iterate over the nextInvestorId and refund the contract balance to the investors in relation to their shares
-  function _refundInvestors() public payable {
+  function _refundInvestors() internal payable {
     require(getTokenBalance(DAI) > 0, "No funds to be redistributed");
 
     (bool _success, uint24 _poolFee) = _uniswapV3PoolExists(DAI, WETH);
@@ -364,6 +368,28 @@ contract Tradingbot {
 
 
   }
+
+  function _reset() internal {
+
+    // mappings must be cleaned up one by one; delete key word only works for each entry
+    for(uint i=0; i < nextInvestorId; i++) {
+      delete shares[investors[i]];
+      delete investors[i];
+    }
+
+    for(uint j=0; j < nextAssetId; j++) {
+      delete assets[j];
+    }
+
+    nextInvestorId = 0;
+    nextAssetId = 0;
+    totalShares = 0;
+    // Other state variables minAmount and contributionEnd must be reinitialized in function initialize()
+
+    state = State.IDLE;
+
+  }
+
 
   modifier onlyOwner() {
     require(msg.sender == owner, "Only owner can call this function");
