@@ -24,6 +24,7 @@ interface IWETH9 {
 contract Tradingbot {
   enum State {
     IDLE,
+    CONTRIBUTING,
     TRADING
   }
   State public state;
@@ -63,17 +64,23 @@ contract Tradingbot {
   uint24 public poolFee_2 = 3000;
   uint24 public poolFee_3 = 10000;
 
-
-  // 1. Define the admin of the investment contract
-  constructor(uint _minAmount, uint duration) {
+  // 1a. Define the admin of the investment contract
+  constructor() {
     owner = msg.sender;
+  }
+
+  // 1b. Seperate initialize() function to reinitialize the contract for trading; not possible if this would be defined in constructor
+  function initialize(uint _minAmount, uint duration) external onlyOwner() {
+    require(state == State.IDLE, "State must be idle");
     minAmount = _minAmount;
     contributionEnd = block.timestamp + duration;
 
+    state = State.CONTRIBUTING;
   }
 
   // 2. DAO concept; anybody can contribute and will be registered as investor
   function contribute() external payable timeOut() {
+    require(state == State.CONTRIBUTING, "State must be CONTRIBUTING");
     require(msg.value >= minAmount, "You must contribute the minimum amount");
     (bool _success, uint24 _poolFee) = _uniswapV3PoolExists(WETH, DAI);
     require(_success, "Pool does not exist");
@@ -113,7 +120,7 @@ contract Tradingbot {
 
   // 3. As long as state = State.IDLE the owner can cancel the bot and refund the money
   function cancelTradingbot() external onlyOwner() {
-    require(state == State.IDLE, "Bot has started trading and can not be cancled");
+    require(state == State.CONTRIBUTING, "Bot has started trading and can not be cancled");
 
     _refundInvestors();
 
