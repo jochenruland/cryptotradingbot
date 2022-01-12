@@ -11,6 +11,7 @@ const compiledContractJson = require('../build/contracts/Tradingbot.json');
 let accounts;
 let contractInstance;
 
+// before() will only create one web3 instance of the contract; beforeEach() creates a new web3 instance before each it-statement
 beforeEach(async () => {
   accounts = await web3.eth.getAccounts();
 
