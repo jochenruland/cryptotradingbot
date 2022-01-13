@@ -1,10 +1,26 @@
+//------------------- requiring some testing Libraries---------------------------------------------------------------------------
 const { expectRevert, time } = require('@openzeppelin/test-helpers');
 const assert = require('assert');
-const Web3 = require('web3'); // Web3 Library
 
-const web3provider = new Web3.providers.HttpProvider('https://rinkeby.infura.io/v3/e9fbb5967c14460cbf78edd9d129532f');
+//--------------------configuring web3---------------------------------------------------------------------------
+  // As we are not in the frontend application, we need the hdwallet-provider which provides some hdwallet features on top of the http protocol
+  // When we configure web3 for our frontend application we can use the http provider
+const HDWalletProvider = require('@truffle/hdwallet-provider');
 
-const web3 = new Web3(web3provider);
+// Read in mnemonic from file
+const fs = require('fs');
+const path = require('path');
+const secretPath = path.resolve(__dirname, '..', '.secret');
+const mnemonic = fs.readFileSync(secretPath, 'utf8').toString().trim();
+
+
+const Web3 = require("web3");
+
+const provider = new HDWalletProvider(mnemonic, "https://rinkeby.infura.io/v3/e9fbb5967c14460cbf78edd9d129532f" )
+
+const web3 = new Web3(provider);
+
+//-------------------------------------------------------------------------------------------------------------------------------
 
 const compiledContractJson = require('../build/contracts/Tradingbot.json');
 
@@ -24,26 +40,48 @@ describe('Testing Tradingbot_v2', () => {
   it('Contract available on Rinkeby', () => {
     console.log(contractInstance.options.address);
     console.log(accounts);
+
     assert.ok(contractInstance.options.address);
   });
 
-  it('Initializes owner by msg.sender', async () => {
+
+  it('Initializes account[0] as the owner', async () => {
     const owner = await contractInstance.methods.owner().call();
     console.log(accounts[0], owner);
     assert.equal(accounts[0], owner);
   });
 
-  it('Initializes contribution period and minAmount', async () => {
+  it('Initializes tradingsbot, allows to contribute from different accounts and swaps Ether to Dai', async () => {
     await contractInstance.methods.initialize(100, 120).send({
+      from: accounts[0]
+    });
+
+    const min = await contractInstance.methods.minAmount().call();
+    console.log(min);
+    //assert.equal(100, min);
+
+    /*
+    await contractInstance.methods.contribute().send({
       from: accounts[0],
+      value: '1000',
       gas: '1000000'
-    })
-    const min = contractInstance.methods.minAmount().call();
-    assert.equal(100, min);
+    });
+
+    await contractInstance.methods.contribute().send({
+      from: accounts[1],
+      value: '1000',
+      gas: '1000000'
+    });
+
+    let balance = await web3.methods.getTokenBalance("0x5592EC0cfb4dbc12D3aB100b257153436a1f0FEa").call();
+    balance = parseFloat(balance);
+    console.log(balance);
+    assert(balance > 0);
+    */
   });
 
 
-  /*
+/*
   it('Can recieve Ether', async () => {
     const tx = await contractInstance.methods.deposit().send({
       from: accounts[0],
