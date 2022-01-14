@@ -27,7 +27,7 @@ contract Tradingbot {
     CONTRIBUTING,
     TRADING
   }
-  State public state;
+  State public currentState = State.IDLE;
 
   struct Asset {
     uint id;
@@ -71,16 +71,16 @@ contract Tradingbot {
 
   // 1b. Seperate initialize() function to reinitialize the contract for trading; not possible if this would be defined in constructor
   function initialize(uint _minAmount, uint duration) external onlyOwner() {
-    require(state == State.IDLE, "State must be idle");
+    require(currentState == State.IDLE, "State must be idle");
     minAmount = _minAmount;
     contributionEnd = block.timestamp + duration;
 
-    state = State.CONTRIBUTING;
+    currentState = State.CONTRIBUTING;
   }
 
   // 2. DAO concept; anybody can contribute and will be registered as investor
   function contribute() external payable timeOut() {
-    require(state == State.CONTRIBUTING, "State must be CONTRIBUTING");
+    require(currentState == State.CONTRIBUTING, "State must be CONTRIBUTING");
     require(msg.value >= minAmount, "You must contribute the minimum amount");
     (bool _success, uint24 _poolFee) = _uniswapV3PoolExists(WETH, DAI);
     require(_success, "Pool does not exist");
@@ -118,9 +118,9 @@ contract Tradingbot {
 
   }
 
-  // 3. As long as state = State.IDLE the owner can cancel the bot and refund the money
+  // 3. As long as currentState = State.IDLE the owner can cancel the bot and refund the money
   function cancelTradingbot() external onlyOwner() {
-    require(state == State.CONTRIBUTING, "Bot has started trading and can not be cancled");
+    require(currentState == State.CONTRIBUTING, "Bot has started trading and can not be cancled");
 
     _refundInvestors();
 
@@ -163,14 +163,14 @@ contract Tradingbot {
       assets[nextAssetId] = Asset(nextAssetId, getTokenSticker(_tokenAddress), _tokenAddress, _price, 0);
       nextAssetId ++;
 
-      state = State.TRADING;
+      currentState = State.TRADING;
 
   }
 
   // 5. Sell token depending on predicted price development
   //
   function sellToken(uint _assetId, /*uint currentPrice,*/ uint predPrice, uint tuner) external onlyOwner() returns (bool _trade) {
-    require(state == State.TRADING, "Tradingbot must be started first");
+    require(currentState == State.TRADING, "Tradingbot must be started first");
     require(getTokenBalance(assets[_assetId].tokenAddress) > 0, "No token available");
 
     (bool _success, uint24 _poolFee) = _uniswapV3PoolExists(assets[_assetId].tokenAddress, DAI);
@@ -213,7 +213,7 @@ contract Tradingbot {
 
   // 6. Buy token depending on predicted price development
   function buyToken(uint _assetId, /*uint currentPrice,*/ uint predPrice, uint tuner) external onlyOwner() returns (bool _trade) {
-    require(state == State.TRADING, "Tradingbot must be started first");
+    require(currentState == State.TRADING, "Tradingbot must be started first");
     require(assets[_assetId].availableFunds > 0, "No funds available");
 
     (bool _success, uint24 _poolFee) = _uniswapV3PoolExists(DAI, assets[_assetId].tokenAddress);
@@ -391,9 +391,9 @@ contract Tradingbot {
     nextInvestorId = 0;
     nextAssetId = 0;
     totalShares = 0;
-    // Other state variables minAmount and contributionEnd must be reinitialized in function initialize()
+    // Other currentState variables minAmount and contributionEnd must be reinitialized in function initialize()
 
-    state = State.IDLE;
+    delete currentState;
 
   }
 
