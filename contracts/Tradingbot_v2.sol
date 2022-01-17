@@ -376,7 +376,7 @@ contract Tradingbot {
 
   }
 
-  function _reset() internal {
+  function _reset() public {
 
     // mappings must be cleaned up one by one; delete key word only works for each entry
     for(uint i=0; i < nextInvestorId; i++) {
