@@ -41,7 +41,7 @@
       "type": "function"
     }
   ],
-  "metadata": "{\"compiler\":{\"version\":\"0.8.0+commit.c7dfd78e\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"inputs\":[{\"internalType\":\"address\",\"name\":\"account\",\"type\":\"address\"}],\"name\":\"balanceOf\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"deposit\",\"outputs\":[],\"stateMutability\":\"payable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"wad\",\"type\":\"uint256\"}],\"name\":\"withdraw\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"}],\"devdoc\":{\"kind\":\"dev\",\"methods\":{},\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{},\"version\":1}},\"settings\":{\"compilationTarget\":{\"project:/contracts/Tradingbot_v2.sol\":\"IWETH9\"},\"evmVersion\":\"istanbul\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":false,\"runs\":200},\"remappings\":[]},\"sources\":{\"@openzeppelin/contracts/interfaces/IERC20.sol\":{\"keccak256\":\"0x6ebf1944ab804b8660eb6fc52f9fe84588cee01c2566a69023e59497e7d27f45\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://2900536cdadec954ced8789a9d1ed4b5e640029e1424e91fd5b88026486f4d45\",\"dweb:/ipfs/QmUMUX7CuYoiHvFkhifqtXGaciw2wnm4t9sAoPzETZ3Gbq\"]},\"@openzeppelin/contracts/token/ERC20/IERC20.sol\":{\"keccak256\":\"0x61437cb513a887a1bbad006e7b1c8b414478427d33de47c5600af3c748f108da\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://2c3d0973630ed74f2b5ce3944677a885dc70ec32fc83b35f55045a10224da32b\",\"dweb:/ipfs/QmbefZ5RoEZKNHXCALfh683PnaNYzKPcKMFjyY1DVAgq8A\"]},\"@openzeppelin/contracts/token/ERC20/extensions/IERC20Metadata.sol\":{\"keccak256\":\"0x8de418a5503946cabe331f35fe242d3201a73f67f77aaeb7110acb1f30423aca\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://5a376d3dda2cb70536c0a45c208b29b34ac560c4cb4f513a42079f96ba47d2dd\",\"dweb:/ipfs/QmZQg6gn1sUpM8wHzwNvSnihumUCAhxD119MpXeKp8B9s8\"]},\"@uniswap/v3-core/contracts/interfaces/IUniswapV3Factory.sol\":{\"keccak256\":\"0xcc3d0c93fc9ac0febbe09f941b465b57f750bcf3b48432da0b97dc289cfdc489\",\"license\":\"GPL-2.0-or-later\",\"urls\":[\"bzz-raw://b9379ad954680c44a0bc523b314ae4c4da735f9fe1d02aa56ea5bdba6f1136f2\",\"dweb:/ipfs/QmZXdgQNXKAckrXWz9R3mc47F1fvDvr28a2ewJrwNAw71B\"]},\"@uniswap/v3-core/contracts/interfaces/callback/IUniswapV3SwapCallback.sol\":{\"keccak256\":\"0x3f485fb1a44e8fbeadefb5da07d66edab3cfe809f0ac4074b1e54e3eb3c4cf69\",\"license\":\"GPL-2.0-or-later\",\"urls\":[\"bzz-raw://095ce0626b41318c772b3ebf19d548282607f6a8f3d6c41c13edfbd5370c8652\",\"dweb:/ipfs/QmVDZfJJ89UUCE1hMyzqpkZAtQ8jUsBgZNE5AMRG7RzRFS\"]},\"@uniswap/v3-periphery/contracts/interfaces/ISwapRouter.sol\":{\"keccak256\":\"0x9bfaf1feb32814623e627ab70f2409760b15d95f1f9b058e2b3399a8bb732975\",\"license\":\"GPL-2.0-or-later\",\"urls\":[\"bzz-raw://a8a2c3e55965b61bcd91993d8e1d5d34b8b8a63e0fdfce87a85f6af92526fd53\",\"dweb:/ipfs/QmQj2CSCSwqDSU4KMNWxGsN2336Cy64WgpV1X1EHXNZWxM\"]},\"project:/contracts/Tradingbot_v2.sol\":{\"keccak256\":\"0xac58afb720fe2b6a59835a805ab0fad6ddfc70dd63b9498b81bfb58a9f281086\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://5d33e5f8623b6ee34c6dd1a65746dccb35cbf7d3778466e6ecc93f307c1989d6\",\"dweb:/ipfs/QmbW3MrU2GM5gYfb16D3bTALh2FhufvpxKoXwzSyYv5vRV\"]}},\"version\":1}",
+  "metadata": "{\"compiler\":{\"version\":\"0.8.0+commit.c7dfd78e\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"inputs\":[{\"internalType\":\"address\",\"name\":\"account\",\"type\":\"address\"}],\"name\":\"balanceOf\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"deposit\",\"outputs\":[],\"stateMutability\":\"payable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"wad\",\"type\":\"uint256\"}],\"name\":\"withdraw\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"}],\"devdoc\":{\"kind\":\"dev\",\"methods\":{},\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{},\"version\":1}},\"settings\":{\"compilationTarget\":{\"project:/contracts/Tradingbot_v2.sol\":\"IWETH9\"},\"evmVersion\":\"istanbul\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":false,\"runs\":200},\"remappings\":[]},\"sources\":{\"@openzeppelin/contracts/interfaces/IERC20.sol\":{\"keccak256\":\"0x6ebf1944ab804b8660eb6fc52f9fe84588cee01c2566a69023e59497e7d27f45\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://2900536cdadec954ced8789a9d1ed4b5e640029e1424e91fd5b88026486f4d45\",\"dweb:/ipfs/QmUMUX7CuYoiHvFkhifqtXGaciw2wnm4t9sAoPzETZ3Gbq\"]},\"@openzeppelin/contracts/token/ERC20/IERC20.sol\":{\"keccak256\":\"0x61437cb513a887a1bbad006e7b1c8b414478427d33de47c5600af3c748f108da\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://2c3d0973630ed74f2b5ce3944677a885dc70ec32fc83b35f55045a10224da32b\",\"dweb:/ipfs/QmbefZ5RoEZKNHXCALfh683PnaNYzKPcKMFjyY1DVAgq8A\"]},\"@openzeppelin/contracts/token/ERC20/extensions/IERC20Metadata.sol\":{\"keccak256\":\"0x8de418a5503946cabe331f35fe242d3201a73f67f77aaeb7110acb1f30423aca\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://5a376d3dda2cb70536c0a45c208b29b34ac560c4cb4f513a42079f96ba47d2dd\",\"dweb:/ipfs/QmZQg6gn1sUpM8wHzwNvSnihumUCAhxD119MpXeKp8B9s8\"]},\"@uniswap/v3-core/contracts/interfaces/IUniswapV3Factory.sol\":{\"keccak256\":\"0xcc3d0c93fc9ac0febbe09f941b465b57f750bcf3b48432da0b97dc289cfdc489\",\"license\":\"GPL-2.0-or-later\",\"urls\":[\"bzz-raw://b9379ad954680c44a0bc523b314ae4c4da735f9fe1d02aa56ea5bdba6f1136f2\",\"dweb:/ipfs/QmZXdgQNXKAckrXWz9R3mc47F1fvDvr28a2ewJrwNAw71B\"]},\"@uniswap/v3-core/contracts/interfaces/callback/IUniswapV3SwapCallback.sol\":{\"keccak256\":\"0x3f485fb1a44e8fbeadefb5da07d66edab3cfe809f0ac4074b1e54e3eb3c4cf69\",\"license\":\"GPL-2.0-or-later\",\"urls\":[\"bzz-raw://095ce0626b41318c772b3ebf19d548282607f6a8f3d6c41c13edfbd5370c8652\",\"dweb:/ipfs/QmVDZfJJ89UUCE1hMyzqpkZAtQ8jUsBgZNE5AMRG7RzRFS\"]},\"@uniswap/v3-periphery/contracts/interfaces/ISwapRouter.sol\":{\"keccak256\":\"0x9bfaf1feb32814623e627ab70f2409760b15d95f1f9b058e2b3399a8bb732975\",\"license\":\"GPL-2.0-or-later\",\"urls\":[\"bzz-raw://a8a2c3e55965b61bcd91993d8e1d5d34b8b8a63e0fdfce87a85f6af92526fd53\",\"dweb:/ipfs/QmQj2CSCSwqDSU4KMNWxGsN2336Cy64WgpV1X1EHXNZWxM\"]},\"project:/contracts/Tradingbot_v2.sol\":{\"keccak256\":\"0x7e9b2b7e192d0c0546eb150ed226a00004dd8edb2cd2e4aa5df6d90a157ee67d\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://86643040363457c19664d3480736d52d618938209f343e72123ad94d218cd9ee\",\"dweb:/ipfs/QmPKcGMS2RcWt4UYfqFYiyW7sgfTBnKNMJgN3HunDRKecn\"]}},\"version\":1}",
   "bytecode": "0x",
   "deployedBytecode": "0x",
   "immutableReferences": {},
@@ -49,7 +49,7 @@
   "deployedGeneratedSources": [],
   "sourceMap": "",
   "deployedSourceMap": "",
-  "source": "// SPDX-License-Identifier: MIT\npragma solidity ^0.8.0;\n// pargma experimental ABIEncoderV2 no longer necessary from solidity 0.8.0\n\n// LEARNING:\n// - DAO Investment concept\n// - Integration of Uniswap as DEX to trade on\n\nimport \"@uniswap/v3-core/contracts/interfaces/IUniswapV3Factory.sol\";\nimport \"@uniswap/v3-periphery/contracts/interfaces/ISwapRouter.sol\";\n\nimport \"@openzeppelin/contracts/interfaces/IERC20.sol\";\nimport \"@openzeppelin/contracts/token/ERC20/extensions/IERC20Metadata.sol\";\n\n\ninterface IWETH9 {\n    function balanceOf(address account) external view returns (uint256);\n    function deposit() external payable;\n\n    function withdraw(uint256 wad) external;\n}\n\n\ncontract Tradingbot {\n  enum State {\n    IDLE,\n    CONTRIBUTING,\n    TRADING\n  }\n  State public currentState = State.IDLE;\n\n  struct Asset {\n    uint id;\n    string sticker;\n    address tokenAddress;\n    uint lastPrice;\n    uint availableFunds;\n  }\n\n  address public owner;\n\n  mapping(uint => address) public investors; // registered investors\n  mapping(address => uint) public shares; // shares per investor\n  mapping(uint => Asset) public assets; // registered token to  % of Portfolio\n\n  uint public nextInvestorId;\n  uint public nextAssetId;\n  uint public totalShares;\n  uint public minAmount;\n  uint public contributionEnd;\n\n  // allows to call functions from the Uniswap Factory contract\n  IUniswapV3Factory public immutable SwapV3Factory = IUniswapV3Factory(0x1F98431c8aD98523631AE4a59f267346ea31F984);\n\n  // allows to call functions from the Uniswap SwapRouter Interface\n  ISwapRouter public immutable SwapRouter = ISwapRouter(0xE592427A0AEce92De3Edee1F18E0157C05861564);\n\n  // we hardcode the token addresses (in production we would use an input parameter for this)\n  address public constant WETH = 0xc778417E063141139Fce010982780140Aa0cD5Ab; // WETH on Rinkeby Testnet\n  address public constant DAI = 0x5592EC0cfb4dbc12D3aB100b257153436a1f0FEa; // DAI on Rinkeby Testnet\n\n  // UniswapV3 allows 3 different pool fees\n  uint24 public poolFee_1 = 500;\n  uint24 public poolFee_2 = 3000;\n  uint24 public poolFee_3 = 10000;\n\n  // 1a. Define the admin of the investment contract\n  constructor() {\n    owner = msg.sender;\n  }\n\n  // 1b. Seperate initialize() function to reinitialize the contract for trading; not possible if this would be defined in constructor\n  function initialize(uint _minAmount, uint duration) external onlyOwner() {\n    require(currentState == State.IDLE, \"State must be idle\");\n    minAmount = _minAmount;\n    contributionEnd = block.timestamp + duration;\n\n    currentState = State.CONTRIBUTING;\n  }\n\n  // 2. DAO concept; anybody can contribute and will be registered as investor\n  function contribute() external payable timeOut() {\n    require(currentState == State.CONTRIBUTING, \"State must be CONTRIBUTING\");\n    require(msg.value >= minAmount, \"You must contribute the minimum amount\");\n    (bool _success, uint24 _poolFee) = _uniswapV3PoolExists(WETH, DAI);\n    require(_success, \"Pool does not exist\");\n\n    uint256 deadline = block.timestamp + 15; // using 'now' for convenience, for mainnet pass deadline from frontend!\n    address tokenIn = WETH;\n    address tokenOut = DAI;\n    uint24 fee = _poolFee;\n    address recipient = address(this);\n    uint256 amountIn = msg.value;\n    uint256 amountOutMinimum = 1;\n    uint160 sqrtPriceLimitX96 = 0;\n\n    ISwapRouter.ExactInputSingleParams memory params = ISwapRouter.ExactInputSingleParams(\n        tokenIn,\n        tokenOut,\n        fee,\n        recipient,\n        deadline,\n        amountIn,\n        amountOutMinimum,\n        sqrtPriceLimitX96\n    );\n\n\n    uint amountOut = SwapRouter.exactInputSingle{ value: msg.value }(params);\n\n    // an investor can contribute mutiple times; therefore shares neet to be +=;\n    investors[nextInvestorId] = msg.sender;\n    shares[msg.sender] += amountOut;\n    totalShares += amountOut;\n\n    // an address is registered as an investor if it has contributed the min amount once and nextInvestorId will be incremented\n    nextInvestorId ++;\n\n  }\n\n  // 3. As long as currentState = State.IDLE the owner can cancel the bot and refund the money\n  function cancelTradingbot() external onlyOwner() {\n    require(currentState == State.CONTRIBUTING, \"Bot has started trading and can not be cancled\");\n\n    _refundInvestors();\n\n    _reset();\n  }\n\n\n  // 4. Initial buy of token to be traded\n  // As long as there are funds of baseCurrency available you can invest in token\n  function initialAssetBuy(address _tokenAddress, uint _value) external onlyOwner() {\n      require(block.timestamp >= contributionEnd, \"Contributtion period not yet passed\");\n      require(getTokenBalance(DAI) > 0, \"No more token of baseCurrency available in this contract\");\n      require(_value > 0, \"Each registered asset must get a value of baseCurrency\");\n      require( _tokenAddress != DAI, \"You can not trade baseCurrency into baseCurrency\");\n\n      (bool _success, uint24 _poolFee) = _uniswapV3PoolExists(DAI, _tokenAddress);\n      require(_success, \"Pool does not exist\");\n\n      uint _amountIn = _value;\n\n      ISwapRouter.ExactInputSingleParams memory params = ISwapRouter.ExactInputSingleParams({\n        tokenIn: DAI,\n        tokenOut: _tokenAddress,\n        fee: _poolFee,\n        recipient: address(this),\n        deadline: block.timestamp + 60,\n        amountIn: _amountIn,\n        amountOutMinimum: 1,\n        sqrtPriceLimitX96: 0\n      });\n\n      // Approve the SwapRouter contract for the amount of DAI\n      // I first made an error to approve this contract - that's wrong, the DAI was already tranfered to this contract in contribute()\n      IERC20(DAI).approve(address(SwapRouter), _amountIn);\n\n      uint _amountOut = SwapRouter.exactInputSingle(params);\n\n      uint _price = uint(_amountIn / _amountOut);\n\n      assets[nextAssetId] = Asset(nextAssetId, getTokenSticker(_tokenAddress), _tokenAddress, _price, 0);\n      nextAssetId ++;\n\n      currentState = State.TRADING;\n\n  }\n\n  // 5. Sell token depending on predicted price development\n  //\n  function sellToken(uint _assetId, /*uint currentPrice,*/ uint predPrice, uint tuner) external onlyOwner() returns (bool _trade) {\n    require(currentState == State.TRADING, \"Tradingbot must be started first\");\n    require(getTokenBalance(assets[_assetId].tokenAddress) > 0, \"No token available\");\n\n    (bool _success, uint24 _poolFee) = _uniswapV3PoolExists(assets[_assetId].tokenAddress, DAI);\n    require(_success, \"Pool does not exist\");\n\n    // Check if price predicted in future x hours < (last buy - tuner)\n    if(predPrice < (assets[_assetId].lastPrice - tuner)) {\n\n      uint _amountIn = getTokenBalance(assets[_assetId].tokenAddress);\n\n      ISwapRouter.ExactInputSingleParams memory params = ISwapRouter.ExactInputSingleParams({\n        tokenIn: assets[_assetId].tokenAddress,\n        tokenOut: DAI,\n        fee: _poolFee,\n        recipient: address(this),\n        deadline: block.timestamp + 15,\n        amountIn: _amountIn,\n        amountOutMinimum: 1,\n        sqrtPriceLimitX96: 0\n      });\n\n      // Approve the SwapRouter contract for the amount of token to be traded\n      IERC20(assets[_assetId].tokenAddress).approve(address(SwapRouter), _amountIn);\n\n      uint _amountOut = SwapRouter.exactInputSingle(params);\n\n      //Updates the availableFunds of the asset in DAI\n      assets[_assetId].availableFunds += _amountOut;\n\n      //Calculates the selling price in DAI\n      uint _price = _amountOut /_amountIn;\n\n      assets[_assetId].lastPrice = _price;\n\n      _trade = true;\n\n    }\n  }\n  //\n\n  // 6. Buy token depending on predicted price development\n  function buyToken(uint _assetId, /*uint currentPrice,*/ uint predPrice, uint tuner) external onlyOwner() returns (bool _trade) {\n    require(currentState == State.TRADING, \"Tradingbot must be started first\");\n    require(assets[_assetId].availableFunds > 0, \"No funds available\");\n\n    (bool _success, uint24 _poolFee) = _uniswapV3PoolExists(DAI, assets[_assetId].tokenAddress);\n    require(_success, \"Pool does not exist\");\n\n    // Check if price predicted in future x hours < (last buy - tuner)\n    if(predPrice > (assets[_assetId].lastPrice + tuner)) {\n\n      uint _amountIn = assets[_assetId].availableFunds;\n\n      ISwapRouter.ExactInputSingleParams memory params = ISwapRouter.ExactInputSingleParams({\n        tokenIn: DAI,\n        tokenOut: assets[_assetId].tokenAddress,\n        fee: _poolFee,\n        recipient: address(this),\n        deadline: block.timestamp + 60,\n        amountIn: _amountIn,\n        amountOutMinimum: 1,\n        sqrtPriceLimitX96: 0\n      });\n\n      // Approve the SwapRouter contract for the amount of token to be traded\n      IERC20(DAI).approve(address(SwapRouter), _amountIn);\n\n      uint _amountOut = SwapRouter.exactInputSingle(params);\n\n      //Updates the availableFunds of the asset in DAI\n      assets[_assetId].availableFunds -= _amountIn;\n\n      //Calculates the buying price in DAI\n      uint _price = _amountIn /_amountOut;\n\n      assets[_assetId].lastPrice = _price;\n\n      _trade = true;\n\n    }\n  }\n  //\n\n  // 7. Liquidate portfolio and return money to investors\n  function liquidatePortfolio () external payable onlyOwner() {\n\n\n    for(uint i; i < nextAssetId; i++) {\n      if(getTokenBalance(assets[i].tokenAddress) > 0) {\n        (bool _success, uint24 _poolFee) = _uniswapV3PoolExists(assets[i].tokenAddress, DAI);\n        require(_success, \"Pool does not exist\");\n\n        uint _amountIn = getTokenBalance(assets[i].tokenAddress);\n\n        ISwapRouter.ExactInputSingleParams memory params = ISwapRouter.ExactInputSingleParams({\n          tokenIn: assets[i].tokenAddress,\n          tokenOut: DAI,\n          fee: _poolFee,\n          recipient: address(this),\n          deadline: block.timestamp + 15,\n          amountIn: _amountIn,\n          amountOutMinimum: 1,\n          sqrtPriceLimitX96: 0\n        });\n\n        // Approve the SwapRouter contract for the amount of token to be traded\n        IERC20(assets[i].tokenAddress).approve(address(SwapRouter), _amountIn);\n\n        SwapRouter.exactInputSingle(params);\n\n        //Updates the availableFunds of the asset in DAI\n        assets[i].availableFunds = 0;\n\n        //Calculates the selling price in DAI\n        uint _price = 0;\n\n        assets[i].lastPrice = _price;\n\n      }\n    }\n\n    _refundInvestors();\n\n    _reset();\n  }\n\n  // 8. Some view functions\n  function getBalance() external view returns(uint) {\n    return address(this).balance;\n  }\n\n  function getTokenBalance(address tokenAddress) public view returns(uint tokenBalance) {\n    tokenBalance = IERC20(tokenAddress).balanceOf(address(this));\n  }\n\n  function getTokenSticker(address tokenAddress) public view returns(string memory _sticker) {\n    _sticker = IERC20Metadata(tokenAddress).symbol();\n  }\n\n  function _uniswapV3PoolExists(address _tokenIn, address _tokenOut) public view returns (bool pool_existence, uint24 _poolFee){\n    if( SwapV3Factory.getPool(_tokenIn, _tokenOut, poolFee_1) != address(0) ){\n        _poolFee = poolFee_1;\n        pool_existence = true;\n    }\n    else if(SwapV3Factory.getPool(_tokenIn, _tokenOut, poolFee_2) != address(0)){\n        _poolFee = poolFee_2;\n        pool_existence = true;\n\n    }\n    else if(SwapV3Factory.getPool(_tokenIn, _tokenOut, poolFee_3) != address(0)){\n        _poolFee = poolFee_3;\n        pool_existence = true;\n\n    }\n\n  }\n\n  // swap DAI to WETH, then iterate over the nextInvestorId and refund the contract balance to the investors in relation to their shares\n  function _refundInvestors() public payable {\n    require(getTokenBalance(DAI) > 0, \"No funds to be redistributed\");\n\n    (bool _success, uint24 _poolFee) = _uniswapV3PoolExists(DAI, WETH);\n    require(_success, \"Pool does not exist\");\n\n    uint _amountIn = getTokenBalance(DAI);\n\n    ISwapRouter.ExactInputSingleParams memory params = ISwapRouter.ExactInputSingleParams({\n      tokenIn: DAI,\n      tokenOut: WETH,\n      fee: _poolFee,\n      recipient: address(this),\n      deadline: block.timestamp + 15,\n      amountIn: _amountIn,\n      amountOutMinimum: 1,\n      sqrtPriceLimitX96: 0\n    });\n\n    // Approve the SwapRouter contract for the amount of DAI\n    // I first made an error to approve this contract - that's wrong, the DAI was already tranfered to this contract in contribute()\n    IERC20(DAI).approve(address(SwapRouter), _amountIn);\n\n    SwapRouter.exactInputSingle(params);\n\n    // Unwrap WETH to ETH and send to this contract\n    uint balanceWETH = IWETH9(WETH).balanceOf(address(this));\n\n    IERC20(WETH).approve(address(this), balanceWETH);\n\n    if (balanceWETH > 0) {\n       IWETH9(WETH).withdraw(balanceWETH);\n    }\n\n\n    // Save value of contract balance and Calculate share for each investor\n    require(address(this).balance > 0, \"No ether available to be redistributed\");\n    uint _totalFunds = address(this).balance;\n\n    for(uint i=0; i < nextInvestorId; i++) {\n      uint _refund = _totalFunds * shares[investors[i]] / totalShares;\n      payable(investors[i]).transfer(_refund);\n    }\n\n\n  }\n\n  function _reset() internal {\n\n    // mappings must be cleaned up one by one; delete key word only works for each entry\n    for(uint i=0; i < nextInvestorId; i++) {\n      delete shares[investors[i]];\n      delete investors[i];\n    }\n\n    for(uint j=0; j < nextAssetId; j++) {\n      delete assets[j];\n    }\n\n    nextInvestorId = 0;\n    nextAssetId = 0;\n    totalShares = 0;\n    // Other currentState variables minAmount and contributionEnd must be reinitialized in function initialize()\n\n    delete currentState;\n\n  }\n\n\n  modifier onlyOwner() {\n    require(msg.sender == owner, \"Only owner can call this function\");\n    _;\n  }\n\n  modifier timeOut() {\n    require(block.timestamp < contributionEnd, \"Time over\");\n    _;\n  }\n\n}\n",
+  "source": "// SPDX-License-Identifier: MIT\npragma solidity ^0.8.0;\n// pargma experimental ABIEncoderV2 no longer necessary from solidity 0.8.0\n\n// LEARNING:\n// - DAO Investment concept\n// - Integration of Uniswap as DEX to trade on\n\nimport \"@uniswap/v3-core/contracts/interfaces/IUniswapV3Factory.sol\";\nimport \"@uniswap/v3-periphery/contracts/interfaces/ISwapRouter.sol\";\n\nimport \"@openzeppelin/contracts/interfaces/IERC20.sol\";\nimport \"@openzeppelin/contracts/token/ERC20/extensions/IERC20Metadata.sol\";\n\n\ninterface IWETH9 {\n    function balanceOf(address account) external view returns (uint256);\n    function deposit() external payable;\n\n    function withdraw(uint256 wad) external;\n}\n\n\ncontract Tradingbot {\n  enum State {\n    IDLE,\n    CONTRIBUTING,\n    TRADING\n  }\n  State public currentState = State.IDLE;\n\n  struct Asset {\n    uint id;\n    string sticker;\n    address tokenAddress;\n    uint lastPrice;\n    uint availableFunds;\n  }\n\n  address public owner;\n\n  mapping(uint => address) public investors; // registered investors\n  mapping(address => uint) public shares; // shares per investor\n  mapping(uint => Asset) public assets; // registered token to  % of Portfolio\n\n  uint public nextInvestorId;\n  uint public nextAssetId;\n  uint public totalShares;\n  uint public minAmount;\n  uint public contributionEnd;\n\n  // allows to call functions from the Uniswap Factory contract\n  IUniswapV3Factory public immutable SwapV3Factory = IUniswapV3Factory(0x1F98431c8aD98523631AE4a59f267346ea31F984);\n\n  // allows to call functions from the Uniswap SwapRouter Interface\n  ISwapRouter public immutable SwapRouter = ISwapRouter(0xE592427A0AEce92De3Edee1F18E0157C05861564);\n\n  // we hardcode the token addresses (in production we would use an input parameter for this)\n  address public constant WETH = 0xc778417E063141139Fce010982780140Aa0cD5Ab; // WETH on Rinkeby Testnet\n  address public constant DAI = 0x5592EC0cfb4dbc12D3aB100b257153436a1f0FEa; // DAI on Rinkeby Testnet\n\n  // UniswapV3 allows 3 different pool fees\n  uint24 public poolFee_1 = 500;\n  uint24 public poolFee_2 = 3000;\n  uint24 public poolFee_3 = 10000;\n\n  // 1a. Define the admin of the investment contract\n  constructor() {\n    owner = msg.sender;\n  }\n\n  // 1b. Seperate initialize() function to reinitialize the contract for trading; not possible if this would be defined in constructor\n  function initialize(uint _minAmount, uint duration) external onlyOwner() {\n    require(currentState == State.IDLE, \"State must be idle\");\n    minAmount = _minAmount;\n    contributionEnd = block.timestamp + duration;\n\n    currentState = State.CONTRIBUTING;\n  }\n\n  // 2. DAO concept; anybody can contribute and will be registered as investor\n  function contribute() external payable timeOut() {\n    require(currentState == State.CONTRIBUTING, \"State must be CONTRIBUTING\");\n    require(msg.value >= minAmount, \"You must contribute the minimum amount\");\n    (bool _success, uint24 _poolFee) = _uniswapV3PoolExists(WETH, DAI);\n    require(_success, \"Pool does not exist\");\n\n    uint256 deadline = block.timestamp + 15; // using 'now' for convenience, for mainnet pass deadline from frontend!\n    address tokenIn = WETH;\n    address tokenOut = DAI;\n    uint24 fee = _poolFee;\n    address recipient = address(this);\n    uint256 amountIn = msg.value;\n    uint256 amountOutMinimum = 1;\n    uint160 sqrtPriceLimitX96 = 0;\n\n    ISwapRouter.ExactInputSingleParams memory params = ISwapRouter.ExactInputSingleParams(\n        tokenIn,\n        tokenOut,\n        fee,\n        recipient,\n        deadline,\n        amountIn,\n        amountOutMinimum,\n        sqrtPriceLimitX96\n    );\n\n\n    uint amountOut = SwapRouter.exactInputSingle{ value: msg.value }(params);\n\n    // an investor can contribute mutiple times; therefore shares neet to be +=;\n    investors[nextInvestorId] = msg.sender;\n    shares[msg.sender] += amountOut;\n    totalShares += amountOut;\n\n    // an address is registered as an investor if it has contributed the min amount once and nextInvestorId will be incremented\n    nextInvestorId ++;\n\n  }\n\n  // 3. As long as currentState = State.IDLE the owner can cancel the bot and refund the money\n  function cancelTradingbot() external onlyOwner() {\n    require(currentState == State.CONTRIBUTING, \"Bot has started trading and can not be cancled\");\n\n    _refundInvestors();\n\n    _reset();\n  }\n\n\n  // 4. Initial buy of token to be traded\n  // As long as there are funds of baseCurrency available you can invest in token\n  function initialAssetBuy(address _tokenAddress, uint _value) external onlyOwner() {\n      require(block.timestamp >= contributionEnd, \"Contributtion period not yet passed\");\n      require(getTokenBalance(DAI) > 0, \"No more token of baseCurrency available in this contract\");\n      require(_value > 0, \"Each registered asset must get a value of baseCurrency\");\n      require( _tokenAddress != DAI, \"You can not trade baseCurrency into baseCurrency\");\n\n      (bool _success, uint24 _poolFee) = _uniswapV3PoolExists(DAI, _tokenAddress);\n      require(_success, \"Pool does not exist\");\n\n      uint _amountIn = _value;\n\n      ISwapRouter.ExactInputSingleParams memory params = ISwapRouter.ExactInputSingleParams({\n        tokenIn: DAI,\n        tokenOut: _tokenAddress,\n        fee: _poolFee,\n        recipient: address(this),\n        deadline: block.timestamp + 60,\n        amountIn: _amountIn,\n        amountOutMinimum: 1,\n        sqrtPriceLimitX96: 0\n      });\n\n      // Approve the SwapRouter contract for the amount of DAI\n      // I first made an error to approve this contract - that's wrong, the DAI was already tranfered to this contract in contribute()\n      IERC20(DAI).approve(address(SwapRouter), _amountIn);\n\n      uint _amountOut = SwapRouter.exactInputSingle(params);\n\n      uint _price = uint(_amountIn / _amountOut);\n\n      assets[nextAssetId] = Asset(nextAssetId, getTokenSticker(_tokenAddress), _tokenAddress, _price, 0);\n      nextAssetId ++;\n\n      currentState = State.TRADING;\n\n  }\n\n  // 5. Sell token depending on predicted price development\n  //\n  function sellToken(uint _assetId, /*uint currentPrice,*/ uint predPrice, uint tuner) external onlyOwner() returns (bool _trade) {\n    require(currentState == State.TRADING, \"Tradingbot must be started first\");\n    require(getTokenBalance(assets[_assetId].tokenAddress) > 0, \"No token available\");\n\n    (bool _success, uint24 _poolFee) = _uniswapV3PoolExists(assets[_assetId].tokenAddress, DAI);\n    require(_success, \"Pool does not exist\");\n\n    // Check if price predicted in future x hours < (last buy - tuner)\n    if(predPrice < (assets[_assetId].lastPrice - tuner)) {\n\n      uint _amountIn = getTokenBalance(assets[_assetId].tokenAddress);\n\n      ISwapRouter.ExactInputSingleParams memory params = ISwapRouter.ExactInputSingleParams({\n        tokenIn: assets[_assetId].tokenAddress,\n        tokenOut: DAI,\n        fee: _poolFee,\n        recipient: address(this),\n        deadline: block.timestamp + 15,\n        amountIn: _amountIn,\n        amountOutMinimum: 1,\n        sqrtPriceLimitX96: 0\n      });\n\n      // Approve the SwapRouter contract for the amount of token to be traded\n      IERC20(assets[_assetId].tokenAddress).approve(address(SwapRouter), _amountIn);\n\n      uint _amountOut = SwapRouter.exactInputSingle(params);\n\n      //Updates the availableFunds of the asset in DAI\n      assets[_assetId].availableFunds += _amountOut;\n\n      //Calculates the selling price in DAI\n      uint _price = _amountOut /_amountIn;\n\n      assets[_assetId].lastPrice = _price;\n\n      _trade = true;\n\n    }\n  }\n  //\n\n  // 6. Buy token depending on predicted price development\n  function buyToken(uint _assetId, /*uint currentPrice,*/ uint predPrice, uint tuner) external onlyOwner() returns (bool _trade) {\n    require(currentState == State.TRADING, \"Tradingbot must be started first\");\n    require(assets[_assetId].availableFunds > 0, \"No funds available\");\n\n    (bool _success, uint24 _poolFee) = _uniswapV3PoolExists(DAI, assets[_assetId].tokenAddress);\n    require(_success, \"Pool does not exist\");\n\n    // Check if price predicted in future x hours < (last buy - tuner)\n    if(predPrice > (assets[_assetId].lastPrice + tuner)) {\n\n      uint _amountIn = assets[_assetId].availableFunds;\n\n      ISwapRouter.ExactInputSingleParams memory params = ISwapRouter.ExactInputSingleParams({\n        tokenIn: DAI,\n        tokenOut: assets[_assetId].tokenAddress,\n        fee: _poolFee,\n        recipient: address(this),\n        deadline: block.timestamp + 60,\n        amountIn: _amountIn,\n        amountOutMinimum: 1,\n        sqrtPriceLimitX96: 0\n      });\n\n      // Approve the SwapRouter contract for the amount of token to be traded\n      IERC20(DAI).approve(address(SwapRouter), _amountIn);\n\n      uint _amountOut = SwapRouter.exactInputSingle(params);\n\n      //Updates the availableFunds of the asset in DAI\n      assets[_assetId].availableFunds -= _amountIn;\n\n      //Calculates the buying price in DAI\n      uint _price = _amountIn /_amountOut;\n\n      assets[_assetId].lastPrice = _price;\n\n      _trade = true;\n\n    }\n  }\n  //\n\n  // 7. Liquidate portfolio and return money to investors\n  function liquidatePortfolio () external payable onlyOwner() {\n\n\n    for(uint i; i < nextAssetId; i++) {\n      if(getTokenBalance(assets[i].tokenAddress) > 0) {\n        (bool _success, uint24 _poolFee) = _uniswapV3PoolExists(assets[i].tokenAddress, DAI);\n        require(_success, \"Pool does not exist\");\n\n        uint _amountIn = getTokenBalance(assets[i].tokenAddress);\n\n        ISwapRouter.ExactInputSingleParams memory params = ISwapRouter.ExactInputSingleParams({\n          tokenIn: assets[i].tokenAddress,\n          tokenOut: DAI,\n          fee: _poolFee,\n          recipient: address(this),\n          deadline: block.timestamp + 15,\n          amountIn: _amountIn,\n          amountOutMinimum: 1,\n          sqrtPriceLimitX96: 0\n        });\n\n        // Approve the SwapRouter contract for the amount of token to be traded\n        IERC20(assets[i].tokenAddress).approve(address(SwapRouter), _amountIn);\n\n        SwapRouter.exactInputSingle(params);\n\n        //Updates the availableFunds of the asset in DAI\n        assets[i].availableFunds = 0;\n\n        //Calculates the selling price in DAI\n        uint _price = 0;\n\n        assets[i].lastPrice = _price;\n\n      }\n    }\n\n    _refundInvestors();\n\n    _reset();\n  }\n\n  // 8. Some view functions\n  function getBalance() external view returns(uint) {\n    return address(this).balance;\n  }\n\n  function getTokenBalance(address tokenAddress) public view returns(uint tokenBalance) {\n    tokenBalance = IERC20(tokenAddress).balanceOf(address(this));\n  }\n\n  function getTokenSticker(address tokenAddress) public view returns(string memory _sticker) {\n    _sticker = IERC20Metadata(tokenAddress).symbol();\n  }\n\n  function _uniswapV3PoolExists(address _tokenIn, address _tokenOut) public view returns (bool pool_existence, uint24 _poolFee){\n    if( SwapV3Factory.getPool(_tokenIn, _tokenOut, poolFee_1) != address(0) ){\n        _poolFee = poolFee_1;\n        pool_existence = true;\n    }\n    else if(SwapV3Factory.getPool(_tokenIn, _tokenOut, poolFee_2) != address(0)){\n        _poolFee = poolFee_2;\n        pool_existence = true;\n\n    }\n    else if(SwapV3Factory.getPool(_tokenIn, _tokenOut, poolFee_3) != address(0)){\n        _poolFee = poolFee_3;\n        pool_existence = true;\n\n    }\n\n  }\n\n  // swap DAI to WETH, then iterate over the nextInvestorId and refund the contract balance to the investors in relation to their shares\n  function _refundInvestors() public payable {\n    require(getTokenBalance(DAI) > 0, \"No funds to be redistributed\");\n\n    (bool _success, uint24 _poolFee) = _uniswapV3PoolExists(DAI, WETH);\n    require(_success, \"Pool does not exist\");\n\n    uint _amountIn = getTokenBalance(DAI);\n\n    ISwapRouter.ExactInputSingleParams memory params = ISwapRouter.ExactInputSingleParams({\n      tokenIn: DAI,\n      tokenOut: WETH,\n      fee: _poolFee,\n      recipient: address(this),\n      deadline: block.timestamp + 15,\n      amountIn: _amountIn,\n      amountOutMinimum: 1,\n      sqrtPriceLimitX96: 0\n    });\n\n    // Approve the SwapRouter contract for the amount of DAI\n    // I first made an error to approve this contract - that's wrong, the DAI was already tranfered to this contract in contribute()\n    IERC20(DAI).approve(address(SwapRouter), _amountIn);\n\n    SwapRouter.exactInputSingle(params);\n\n    // Unwrap WETH to ETH and send to this contract\n    uint balanceWETH = IWETH9(WETH).balanceOf(address(this));\n\n    IERC20(WETH).approve(address(this), balanceWETH);\n\n    if (balanceWETH > 0) {\n       IWETH9(WETH).withdraw(balanceWETH);\n    }\n\n\n    // Save value of contract balance and Calculate share for each investor\n    require(address(this).balance > 0, \"No ether available to be redistributed\");\n    uint _totalFunds = address(this).balance;\n\n    for(uint i=0; i < nextInvestorId; i++) {\n      uint _refund = _totalFunds * shares[investors[i]] / totalShares;\n      payable(investors[i]).transfer(_refund);\n    }\n\n\n  }\n\n  function _reset() public {\n\n    // mappings must be cleaned up one by one; delete key word only works for each entry\n    for(uint i=0; i < nextInvestorId; i++) {\n      delete shares[investors[i]];\n      delete investors[i];\n    }\n\n    for(uint j=0; j < nextAssetId; j++) {\n      delete assets[j];\n    }\n\n    nextInvestorId = 0;\n    nextAssetId = 0;\n    totalShares = 0;\n    // Other currentState variables minAmount and contributionEnd must be reinitialized in function initialize()\n\n    delete currentState;\n\n  }\n\n\n  modifier onlyOwner() {\n    require(msg.sender == owner, \"Only owner can call this function\");\n    _;\n  }\n\n  modifier timeOut() {\n    require(block.timestamp < contributionEnd, \"Time over\");\n    _;\n  }\n\n}\n",
   "sourcePath": "C:\\Rula01\\01_Lernen\\Udemy\\Projects\\cryptotradingbot_v1\\contracts\\Tradingbot_v2.sol",
   "ast": {
     "absolutePath": "project:/contracts/Tradingbot_v2.sol",
@@ -14573,13 +14573,13 @@
             "body": {
               "id": 1489,
               "nodeType": "Block",
-              "src": "13033:488:7",
+              "src": "13031:488:7",
               "statements": [
                 {
                   "body": {
                     "id": 1455,
                     "nodeType": "Block",
-                    "src": "13168:69:7",
+                    "src": "13166:69:7",
                     "statements": [
                       {
                         "expression": {
@@ -14591,7 +14591,7 @@
                           "nodeType": "UnaryOperation",
                           "operator": "delete",
                           "prefix": true,
-                          "src": "13176:27:7",
+                          "src": "13174:27:7",
                           "subExpression": {
                             "baseExpression": {
                               "id": 1443,
@@ -14599,7 +14599,7 @@
                               "nodeType": "Identifier",
                               "overloadedDeclarations": [],
                               "referencedDeclaration": 387,
-                              "src": "13183:6:7",
+                              "src": "13181:6:7",
                               "typeDescriptions": {
                                 "typeIdentifier": "t_mapping$_t_address_$_t_uint256_$",
                                 "typeString": "mapping(address => uint256)"
@@ -14613,7 +14613,7 @@
                                 "nodeType": "Identifier",
                                 "overloadedDeclarations": [],
                                 "referencedDeclaration": 383,
-                                "src": "13190:9:7",
+                                "src": "13188:9:7",
                                 "typeDescriptions": {
                                   "typeIdentifier": "t_mapping$_t_uint256_$_t_address_$",
                                   "typeString": "mapping(uint256 => address)"
@@ -14626,7 +14626,7 @@
                                 "nodeType": "Identifier",
                                 "overloadedDeclarations": [],
                                 "referencedDeclaration": 1434,
-                                "src": "13200:1:7",
+                                "src": "13198:1:7",
                                 "typeDescriptions": {
                                   "typeIdentifier": "t_uint256",
                                   "typeString": "uint256"
@@ -14637,7 +14637,7 @@
                               "isPure": false,
                               "lValueRequested": false,
                               "nodeType": "IndexAccess",
-                              "src": "13190:12:7",
+                              "src": "13188:12:7",
                               "typeDescriptions": {
                                 "typeIdentifier": "t_address",
                                 "typeString": "address"
@@ -14648,7 +14648,7 @@
                             "isPure": false,
                             "lValueRequested": true,
                             "nodeType": "IndexAccess",
-                            "src": "13183:20:7",
+                            "src": "13181:20:7",
                             "typeDescriptions": {
                               "typeIdentifier": "t_uint256",
                               "typeString": "uint256"
@@ -14661,7 +14661,7 @@
                         },
                         "id": 1449,
                         "nodeType": "ExpressionStatement",
-                        "src": "13176:27:7"
+                        "src": "13174:27:7"
                       },
                       {
                         "expression": {
@@ -14673,7 +14673,7 @@
                           "nodeType": "UnaryOperation",
                           "operator": "delete",
                           "prefix": true,
-                          "src": "13211:19:7",
+                          "src": "13209:19:7",
                           "subExpression": {
                             "baseExpression": {
                               "id": 1450,
@@ -14681,7 +14681,7 @@
                               "nodeType": "Identifier",
                               "overloadedDeclarations": [],
                               "referencedDeclaration": 383,
-                              "src": "13218:9:7",
+                              "src": "13216:9:7",
                               "typeDescriptions": {
                                 "typeIdentifier": "t_mapping$_t_uint256_$_t_address_$",
                                 "typeString": "mapping(uint256 => address)"
@@ -14694,7 +14694,7 @@
                               "nodeType": "Identifier",
                               "overloadedDeclarations": [],
                               "referencedDeclaration": 1434,
-                              "src": "13228:1:7",
+                              "src": "13226:1:7",
                               "typeDescriptions": {
                                 "typeIdentifier": "t_uint256",
                                 "typeString": "uint256"
@@ -14705,7 +14705,7 @@
                             "isPure": false,
                             "lValueRequested": true,
                             "nodeType": "IndexAccess",
-                            "src": "13218:12:7",
+                            "src": "13216:12:7",
                             "typeDescriptions": {
                               "typeIdentifier": "t_address",
                               "typeString": "address"
@@ -14718,7 +14718,7 @@
                         },
                         "id": 1454,
                         "nodeType": "ExpressionStatement",
-                        "src": "13211:19:7"
+                        "src": "13209:19:7"
                       }
                     ]
                   },
@@ -14738,7 +14738,7 @@
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
                       "referencedDeclaration": 1434,
-                      "src": "13143:1:7",
+                      "src": "13141:1:7",
                       "typeDescriptions": {
                         "typeIdentifier": "t_uint256",
                         "typeString": "uint256"
@@ -14752,13 +14752,13 @@
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
                       "referencedDeclaration": 394,
-                      "src": "13147:14:7",
+                      "src": "13145:14:7",
                       "typeDescriptions": {
                         "typeIdentifier": "t_uint256",
                         "typeString": "uint256"
                       }
                     },
-                    "src": "13143:18:7",
+                    "src": "13141:18:7",
                     "typeDescriptions": {
                       "typeIdentifier": "t_bool",
                       "typeString": "bool"
@@ -14777,7 +14777,7 @@
                         "name": "i",
                         "nodeType": "VariableDeclaration",
                         "scope": 1456,
-                        "src": "13133:6:7",
+                        "src": "13131:6:7",
                         "stateVariable": false,
                         "storageLocation": "default",
                         "typeDescriptions": {
@@ -14788,7 +14788,7 @@
                           "id": 1433,
                           "name": "uint",
                           "nodeType": "ElementaryTypeName",
-                          "src": "13133:4:7",
+                          "src": "13131:4:7",
                           "typeDescriptions": {
                             "typeIdentifier": "t_uint256",
                             "typeString": "uint256"
@@ -14807,7 +14807,7 @@
                       "kind": "number",
                       "lValueRequested": false,
                       "nodeType": "Literal",
-                      "src": "13140:1:7",
+                      "src": "13138:1:7",
                       "typeDescriptions": {
                         "typeIdentifier": "t_rational_0_by_1",
                         "typeString": "int_const 0"
@@ -14815,7 +14815,7 @@
                       "value": "0"
                     },
                     "nodeType": "VariableDeclarationStatement",
-                    "src": "13133:8:7"
+                    "src": "13131:8:7"
                   },
                   "loopExpression": {
                     "expression": {
@@ -14827,14 +14827,14 @@
                       "nodeType": "UnaryOperation",
                       "operator": "++",
                       "prefix": false,
-                      "src": "13163:3:7",
+                      "src": "13161:3:7",
                       "subExpression": {
                         "id": 1440,
                         "name": "i",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
                         "referencedDeclaration": 1434,
-                        "src": "13163:1:7",
+                        "src": "13161:1:7",
                         "typeDescriptions": {
                           "typeIdentifier": "t_uint256",
                           "typeString": "uint256"
@@ -14847,16 +14847,16 @@
                     },
                     "id": 1442,
                     "nodeType": "ExpressionStatement",
-                    "src": "13163:3:7"
+                    "src": "13161:3:7"
                   },
                   "nodeType": "ForStatement",
-                  "src": "13129:108:7"
+                  "src": "13127:108:7"
                 },
                 {
                   "body": {
                     "id": 1472,
                     "nodeType": "Block",
-                    "src": "13279:31:7",
+                    "src": "13277:31:7",
                     "statements": [
                       {
                         "expression": {
@@ -14868,7 +14868,7 @@
                           "nodeType": "UnaryOperation",
                           "operator": "delete",
                           "prefix": true,
-                          "src": "13287:16:7",
+                          "src": "13285:16:7",
                           "subExpression": {
                             "baseExpression": {
                               "id": 1467,
@@ -14876,7 +14876,7 @@
                               "nodeType": "Identifier",
                               "overloadedDeclarations": [],
                               "referencedDeclaration": 392,
-                              "src": "13294:6:7",
+                              "src": "13292:6:7",
                               "typeDescriptions": {
                                 "typeIdentifier": "t_mapping$_t_uint256_$_t_struct$_Asset_$377_storage_$",
                                 "typeString": "mapping(uint256 => struct Tradingbot.Asset storage ref)"
@@ -14889,7 +14889,7 @@
                               "nodeType": "Identifier",
                               "overloadedDeclarations": [],
                               "referencedDeclaration": 1458,
-                              "src": "13301:1:7",
+                              "src": "13299:1:7",
                               "typeDescriptions": {
                                 "typeIdentifier": "t_uint256",
                                 "typeString": "uint256"
@@ -14900,7 +14900,7 @@
                             "isPure": false,
                             "lValueRequested": true,
                             "nodeType": "IndexAccess",
-                            "src": "13294:9:7",
+                            "src": "13292:9:7",
                             "typeDescriptions": {
                               "typeIdentifier": "t_struct$_Asset_$377_storage",
                               "typeString": "struct Tradingbot.Asset storage ref"
@@ -14913,7 +14913,7 @@
                         },
                         "id": 1471,
                         "nodeType": "ExpressionStatement",
-                        "src": "13287:16:7"
+                        "src": "13285:16:7"
                       }
                     ]
                   },
@@ -14933,7 +14933,7 @@
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
                       "referencedDeclaration": 1458,
-                      "src": "13257:1:7",
+                      "src": "13255:1:7",
                       "typeDescriptions": {
                         "typeIdentifier": "t_uint256",
                         "typeString": "uint256"
@@ -14947,13 +14947,13 @@
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
                       "referencedDeclaration": 396,
-                      "src": "13261:11:7",
+                      "src": "13259:11:7",
                       "typeDescriptions": {
                         "typeIdentifier": "t_uint256",
                         "typeString": "uint256"
                       }
                     },
-                    "src": "13257:15:7",
+                    "src": "13255:15:7",
                     "typeDescriptions": {
                       "typeIdentifier": "t_bool",
                       "typeString": "bool"
@@ -14972,7 +14972,7 @@
                         "name": "j",
                         "nodeType": "VariableDeclaration",
                         "scope": 1473,
-                        "src": "13247:6:7",
+                        "src": "13245:6:7",
                         "stateVariable": false,
                         "storageLocation": "default",
                         "typeDescriptions": {
@@ -14983,7 +14983,7 @@
                           "id": 1457,
                           "name": "uint",
                           "nodeType": "ElementaryTypeName",
-                          "src": "13247:4:7",
+                          "src": "13245:4:7",
                           "typeDescriptions": {
                             "typeIdentifier": "t_uint256",
                             "typeString": "uint256"
@@ -15002,7 +15002,7 @@
                       "kind": "number",
                       "lValueRequested": false,
                       "nodeType": "Literal",
-                      "src": "13254:1:7",
+                      "src": "13252:1:7",
                       "typeDescriptions": {
                         "typeIdentifier": "t_rational_0_by_1",
                         "typeString": "int_const 0"
@@ -15010,7 +15010,7 @@
                       "value": "0"
                     },
                     "nodeType": "VariableDeclarationStatement",
-                    "src": "13247:8:7"
+                    "src": "13245:8:7"
                   },
                   "loopExpression": {
                     "expression": {
@@ -15022,14 +15022,14 @@
                       "nodeType": "UnaryOperation",
                       "operator": "++",
                       "prefix": false,
-                      "src": "13274:3:7",
+                      "src": "13272:3:7",
                       "subExpression": {
                         "id": 1464,
                         "name": "j",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
                         "referencedDeclaration": 1458,
-                        "src": "13274:1:7",
+                        "src": "13272:1:7",
                         "typeDescriptions": {
                           "typeIdentifier": "t_uint256",
                           "typeString": "uint256"
@@ -15042,10 +15042,10 @@
                     },
                     "id": 1466,
                     "nodeType": "ExpressionStatement",
-                    "src": "13274:3:7"
+                    "src": "13272:3:7"
                   },
                   "nodeType": "ForStatement",
-                  "src": "13243:67:7"
+                  "src": "13241:67:7"
                 },
                 {
                   "expression": {
@@ -15060,7 +15060,7 @@
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
                       "referencedDeclaration": 394,
-                      "src": "13316:14:7",
+                      "src": "13314:14:7",
                       "typeDescriptions": {
                         "typeIdentifier": "t_uint256",
                         "typeString": "uint256"
@@ -15077,14 +15077,14 @@
                       "kind": "number",
                       "lValueRequested": false,
                       "nodeType": "Literal",
-                      "src": "13333:1:7",
+                      "src": "13331:1:7",
                       "typeDescriptions": {
                         "typeIdentifier": "t_rational_0_by_1",
                         "typeString": "int_const 0"
                       },
                       "value": "0"
                     },
-                    "src": "13316:18:7",
+                    "src": "13314:18:7",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
@@ -15092,7 +15092,7 @@
                   },
                   "id": 1477,
                   "nodeType": "ExpressionStatement",
-                  "src": "13316:18:7"
+                  "src": "13314:18:7"
                 },
                 {
                   "expression": {
@@ -15107,7 +15107,7 @@
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
                       "referencedDeclaration": 396,
-                      "src": "13340:11:7",
+                      "src": "13338:11:7",
                       "typeDescriptions": {
                         "typeIdentifier": "t_uint256",
                         "typeString": "uint256"
@@ -15124,14 +15124,14 @@
                       "kind": "number",
                       "lValueRequested": false,
                       "nodeType": "Literal",
-                      "src": "13354:1:7",
+                      "src": "13352:1:7",
                       "typeDescriptions": {
                         "typeIdentifier": "t_rational_0_by_1",
                         "typeString": "int_const 0"
                       },
                       "value": "0"
                     },
-                    "src": "13340:15:7",
+                    "src": "13338:15:7",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
@@ -15139,7 +15139,7 @@
                   },
                   "id": 1481,
                   "nodeType": "ExpressionStatement",
-                  "src": "13340:15:7"
+                  "src": "13338:15:7"
                 },
                 {
                   "expression": {
@@ -15154,7 +15154,7 @@
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
                       "referencedDeclaration": 398,
-                      "src": "13361:11:7",
+                      "src": "13359:11:7",
                       "typeDescriptions": {
                         "typeIdentifier": "t_uint256",
                         "typeString": "uint256"
@@ -15171,14 +15171,14 @@
                       "kind": "number",
                       "lValueRequested": false,
                       "nodeType": "Literal",
-                      "src": "13375:1:7",
+                      "src": "13373:1:7",
                       "typeDescriptions": {
                         "typeIdentifier": "t_rational_0_by_1",
                         "typeString": "int_const 0"
                       },
                       "value": "0"
                     },
-                    "src": "13361:15:7",
+                    "src": "13359:15:7",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
@@ -15186,7 +15186,7 @@
                   },
                   "id": 1485,
                   "nodeType": "ExpressionStatement",
-                  "src": "13361:15:7"
+                  "src": "13359:15:7"
                 },
                 {
                   "expression": {
@@ -15198,14 +15198,14 @@
                     "nodeType": "UnaryOperation",
                     "operator": "delete",
                     "prefix": true,
-                    "src": "13496:19:7",
+                    "src": "13494:19:7",
                     "subExpression": {
                       "id": 1486,
                       "name": "currentState",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
                       "referencedDeclaration": 366,
-                      "src": "13503:12:7",
+                      "src": "13501:12:7",
                       "typeDescriptions": {
                         "typeIdentifier": "t_enum$_State_$361",
                         "typeString": "enum Tradingbot.State"
@@ -15218,10 +15218,11 @@
                   },
                   "id": 1488,
                   "nodeType": "ExpressionStatement",
-                  "src": "13496:19:7"
+                  "src": "13494:19:7"
                 }
               ]
             },
+            "functionSelector": "1592f0ab",
             "id": 1490,
             "implemented": true,
             "kind": "function",
@@ -15238,19 +15239,19 @@
               "id": 1432,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "13033:0:7"
+              "src": "13031:0:7"
             },
             "scope": 1515,
-            "src": "13006:515:7",
+            "src": "13006:513:7",
             "stateMutability": "nonpayable",
             "virtual": false,
-            "visibility": "internal"
+            "visibility": "public"
           },
           {
             "body": {
               "id": 1501,
               "nodeType": "Block",
-              "src": "13547:83:7",
+              "src": "13545:83:7",
               "statements": [
                 {
                   "expression": {
@@ -15272,7 +15273,7 @@
                             "nodeType": "Identifier",
                             "overloadedDeclarations": [],
                             "referencedDeclaration": 4294967281,
-                            "src": "13561:3:7",
+                            "src": "13559:3:7",
                             "typeDescriptions": {
                               "typeIdentifier": "t_magic_message",
                               "typeString": "msg"
@@ -15285,7 +15286,7 @@
                           "lValueRequested": false,
                           "memberName": "sender",
                           "nodeType": "MemberAccess",
-                          "src": "13561:10:7",
+                          "src": "13559:10:7",
                           "typeDescriptions": {
                             "typeIdentifier": "t_address",
                             "typeString": "address"
@@ -15299,13 +15300,13 @@
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
                           "referencedDeclaration": 379,
-                          "src": "13575:5:7",
+                          "src": "13573:5:7",
                           "typeDescriptions": {
                             "typeIdentifier": "t_address",
                             "typeString": "address"
                           }
                         },
-                        "src": "13561:19:7",
+                        "src": "13559:19:7",
                         "typeDescriptions": {
                           "typeIdentifier": "t_bool",
                           "typeString": "bool"
@@ -15320,7 +15321,7 @@
                         "kind": "string",
                         "lValueRequested": false,
                         "nodeType": "Literal",
-                        "src": "13582:35:7",
+                        "src": "13580:35:7",
                         "typeDescriptions": {
                           "typeIdentifier": "t_stringliteral_1b988f8784cc3cf7ad7d1bf59197df07b7925b5a748a478400a8f83fd9e196ef",
                           "typeString": "literal_string \"Only owner can call this function\""
@@ -15347,7 +15348,7 @@
                         4294967278
                       ],
                       "referencedDeclaration": 4294967278,
-                      "src": "13553:7:7",
+                      "src": "13551:7:7",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_require_pure$_t_bool_$_t_string_memory_ptr_$returns$__$",
                         "typeString": "function (bool,string memory) pure"
@@ -15361,7 +15362,7 @@
                     "lValueRequested": false,
                     "names": [],
                     "nodeType": "FunctionCall",
-                    "src": "13553:65:7",
+                    "src": "13551:65:7",
                     "tryCall": false,
                     "typeDescriptions": {
                       "typeIdentifier": "t_tuple$__$",
@@ -15370,12 +15371,12 @@
                   },
                   "id": 1499,
                   "nodeType": "ExpressionStatement",
-                  "src": "13553:65:7"
+                  "src": "13551:65:7"
                 },
                 {
                   "id": 1500,
                   "nodeType": "PlaceholderStatement",
-                  "src": "13624:1:7"
+                  "src": "13622:1:7"
                 }
               ]
             },
@@ -15386,9 +15387,9 @@
               "id": 1491,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "13544:2:7"
+              "src": "13542:2:7"
             },
-            "src": "13526:104:7",
+            "src": "13524:104:7",
             "virtual": false,
             "visibility": "internal"
           },
@@ -15396,7 +15397,7 @@
             "body": {
               "id": 1513,
               "nodeType": "Block",
-              "src": "13653:73:7",
+              "src": "13651:73:7",
               "statements": [
                 {
                   "expression": {
@@ -15418,7 +15419,7 @@
                             "nodeType": "Identifier",
                             "overloadedDeclarations": [],
                             "referencedDeclaration": 4294967292,
-                            "src": "13667:5:7",
+                            "src": "13665:5:7",
                             "typeDescriptions": {
                               "typeIdentifier": "t_magic_block",
                               "typeString": "block"
@@ -15431,7 +15432,7 @@
                           "lValueRequested": false,
                           "memberName": "timestamp",
                           "nodeType": "MemberAccess",
-                          "src": "13667:15:7",
+                          "src": "13665:15:7",
                           "typeDescriptions": {
                             "typeIdentifier": "t_uint256",
                             "typeString": "uint256"
@@ -15445,13 +15446,13 @@
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
                           "referencedDeclaration": 402,
-                          "src": "13685:15:7",
+                          "src": "13683:15:7",
                           "typeDescriptions": {
                             "typeIdentifier": "t_uint256",
                             "typeString": "uint256"
                           }
                         },
-                        "src": "13667:33:7",
+                        "src": "13665:33:7",
                         "typeDescriptions": {
                           "typeIdentifier": "t_bool",
                           "typeString": "bool"
@@ -15466,7 +15467,7 @@
                         "kind": "string",
                         "lValueRequested": false,
                         "nodeType": "Literal",
-                        "src": "13702:11:7",
+                        "src": "13700:11:7",
                         "typeDescriptions": {
                           "typeIdentifier": "t_stringliteral_269922bd27dce1616982b0d8eecabaaf75f33ae9e1d42aa698b615f0c2279937",
                           "typeString": "literal_string \"Time over\""
@@ -15493,7 +15494,7 @@
                         4294967278
                       ],
                       "referencedDeclaration": 4294967278,
-                      "src": "13659:7:7",
+                      "src": "13657:7:7",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_require_pure$_t_bool_$_t_string_memory_ptr_$returns$__$",
                         "typeString": "function (bool,string memory) pure"
@@ -15507,7 +15508,7 @@
                     "lValueRequested": false,
                     "names": [],
                     "nodeType": "FunctionCall",
-                    "src": "13659:55:7",
+                    "src": "13657:55:7",
                     "tryCall": false,
                     "typeDescriptions": {
                       "typeIdentifier": "t_tuple$__$",
@@ -15516,12 +15517,12 @@
                   },
                   "id": 1511,
                   "nodeType": "ExpressionStatement",
-                  "src": "13659:55:7"
+                  "src": "13657:55:7"
                 },
                 {
                   "id": 1512,
                   "nodeType": "PlaceholderStatement",
-                  "src": "13720:1:7"
+                  "src": "13718:1:7"
                 }
               ]
             },
@@ -15532,18 +15533,18 @@
               "id": 1503,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "13650:2:7"
+              "src": "13648:2:7"
             },
-            "src": "13634:92:7",
+            "src": "13632:92:7",
             "virtual": false,
             "visibility": "internal"
           }
         ],
         "scope": 1516,
-        "src": "679:13050:7"
+        "src": "679:13048:7"
       }
     ],
-    "src": "32:13698:7"
+    "src": "32:13696:7"
   },
   "legacyAST": {
     "absolutePath": "project:/contracts/Tradingbot_v2.sol",
@@ -30067,13 +30068,13 @@
             "body": {
               "id": 1489,
               "nodeType": "Block",
-              "src": "13033:488:7",
+              "src": "13031:488:7",
               "statements": [
                 {
                   "body": {
                     "id": 1455,
                     "nodeType": "Block",
-                    "src": "13168:69:7",
+                    "src": "13166:69:7",
                     "statements": [
                       {
                         "expression": {
@@ -30085,7 +30086,7 @@
                           "nodeType": "UnaryOperation",
                           "operator": "delete",
                           "prefix": true,
-                          "src": "13176:27:7",
+                          "src": "13174:27:7",
                           "subExpression": {
                             "baseExpression": {
                               "id": 1443,
@@ -30093,7 +30094,7 @@
                               "nodeType": "Identifier",
                               "overloadedDeclarations": [],
                               "referencedDeclaration": 387,
-                              "src": "13183:6:7",
+                              "src": "13181:6:7",
                               "typeDescriptions": {
                                 "typeIdentifier": "t_mapping$_t_address_$_t_uint256_$",
                                 "typeString": "mapping(address => uint256)"
@@ -30107,7 +30108,7 @@
                                 "nodeType": "Identifier",
                                 "overloadedDeclarations": [],
                                 "referencedDeclaration": 383,
-                                "src": "13190:9:7",
+                                "src": "13188:9:7",
                                 "typeDescriptions": {
                                   "typeIdentifier": "t_mapping$_t_uint256_$_t_address_$",
                                   "typeString": "mapping(uint256 => address)"
@@ -30120,7 +30121,7 @@
                                 "nodeType": "Identifier",
                                 "overloadedDeclarations": [],
                                 "referencedDeclaration": 1434,
-                                "src": "13200:1:7",
+                                "src": "13198:1:7",
                                 "typeDescriptions": {
                                   "typeIdentifier": "t_uint256",
                                   "typeString": "uint256"
@@ -30131,7 +30132,7 @@
                               "isPure": false,
                               "lValueRequested": false,
                               "nodeType": "IndexAccess",
-                              "src": "13190:12:7",
+                              "src": "13188:12:7",
                               "typeDescriptions": {
                                 "typeIdentifier": "t_address",
                                 "typeString": "address"
@@ -30142,7 +30143,7 @@
                             "isPure": false,
                             "lValueRequested": true,
                             "nodeType": "IndexAccess",
-                            "src": "13183:20:7",
+                            "src": "13181:20:7",
                             "typeDescriptions": {
                               "typeIdentifier": "t_uint256",
                               "typeString": "uint256"
@@ -30155,7 +30156,7 @@
                         },
                         "id": 1449,
                         "nodeType": "ExpressionStatement",
-                        "src": "13176:27:7"
+                        "src": "13174:27:7"
                       },
                       {
                         "expression": {
@@ -30167,7 +30168,7 @@
                           "nodeType": "UnaryOperation",
                           "operator": "delete",
                           "prefix": true,
-                          "src": "13211:19:7",
+                          "src": "13209:19:7",
                           "subExpression": {
                             "baseExpression": {
                               "id": 1450,
@@ -30175,7 +30176,7 @@
                               "nodeType": "Identifier",
                               "overloadedDeclarations": [],
                               "referencedDeclaration": 383,
-                              "src": "13218:9:7",
+                              "src": "13216:9:7",
                               "typeDescriptions": {
                                 "typeIdentifier": "t_mapping$_t_uint256_$_t_address_$",
                                 "typeString": "mapping(uint256 => address)"
@@ -30188,7 +30189,7 @@
                               "nodeType": "Identifier",
                               "overloadedDeclarations": [],
                               "referencedDeclaration": 1434,
-                              "src": "13228:1:7",
+                              "src": "13226:1:7",
                               "typeDescriptions": {
                                 "typeIdentifier": "t_uint256",
                                 "typeString": "uint256"
@@ -30199,7 +30200,7 @@
                             "isPure": false,
                             "lValueRequested": true,
                             "nodeType": "IndexAccess",
-                            "src": "13218:12:7",
+                            "src": "13216:12:7",
                             "typeDescriptions": {
                               "typeIdentifier": "t_address",
                               "typeString": "address"
@@ -30212,7 +30213,7 @@
                         },
                         "id": 1454,
                         "nodeType": "ExpressionStatement",
-                        "src": "13211:19:7"
+                        "src": "13209:19:7"
                       }
                     ]
                   },
@@ -30232,7 +30233,7 @@
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
                       "referencedDeclaration": 1434,
-                      "src": "13143:1:7",
+                      "src": "13141:1:7",
                       "typeDescriptions": {
                         "typeIdentifier": "t_uint256",
                         "typeString": "uint256"
@@ -30246,13 +30247,13 @@
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
                       "referencedDeclaration": 394,
-                      "src": "13147:14:7",
+                      "src": "13145:14:7",
                       "typeDescriptions": {
                         "typeIdentifier": "t_uint256",
                         "typeString": "uint256"
                       }
                     },
-                    "src": "13143:18:7",
+                    "src": "13141:18:7",
                     "typeDescriptions": {
                       "typeIdentifier": "t_bool",
                       "typeString": "bool"
@@ -30271,7 +30272,7 @@
                         "name": "i",
                         "nodeType": "VariableDeclaration",
                         "scope": 1456,
-                        "src": "13133:6:7",
+                        "src": "13131:6:7",
                         "stateVariable": false,
                         "storageLocation": "default",
                         "typeDescriptions": {
@@ -30282,7 +30283,7 @@
                           "id": 1433,
                           "name": "uint",
                           "nodeType": "ElementaryTypeName",
-                          "src": "13133:4:7",
+                          "src": "13131:4:7",
                           "typeDescriptions": {
                             "typeIdentifier": "t_uint256",
                             "typeString": "uint256"
@@ -30301,7 +30302,7 @@
                       "kind": "number",
                       "lValueRequested": false,
                       "nodeType": "Literal",
-                      "src": "13140:1:7",
+                      "src": "13138:1:7",
                       "typeDescriptions": {
                         "typeIdentifier": "t_rational_0_by_1",
                         "typeString": "int_const 0"
@@ -30309,7 +30310,7 @@
                       "value": "0"
                     },
                     "nodeType": "VariableDeclarationStatement",
-                    "src": "13133:8:7"
+                    "src": "13131:8:7"
                   },
                   "loopExpression": {
                     "expression": {
@@ -30321,14 +30322,14 @@
                       "nodeType": "UnaryOperation",
                       "operator": "++",
                       "prefix": false,
-                      "src": "13163:3:7",
+                      "src": "13161:3:7",
                       "subExpression": {
                         "id": 1440,
                         "name": "i",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
                         "referencedDeclaration": 1434,
-                        "src": "13163:1:7",
+                        "src": "13161:1:7",
                         "typeDescriptions": {
                           "typeIdentifier": "t_uint256",
                           "typeString": "uint256"
@@ -30341,16 +30342,16 @@
                     },
                     "id": 1442,
                     "nodeType": "ExpressionStatement",
-                    "src": "13163:3:7"
+                    "src": "13161:3:7"
                   },
                   "nodeType": "ForStatement",
-                  "src": "13129:108:7"
+                  "src": "13127:108:7"
                 },
                 {
                   "body": {
                     "id": 1472,
                     "nodeType": "Block",
-                    "src": "13279:31:7",
+                    "src": "13277:31:7",
                     "statements": [
                       {
                         "expression": {
@@ -30362,7 +30363,7 @@
                           "nodeType": "UnaryOperation",
                           "operator": "delete",
                           "prefix": true,
-                          "src": "13287:16:7",
+                          "src": "13285:16:7",
                           "subExpression": {
                             "baseExpression": {
                               "id": 1467,
@@ -30370,7 +30371,7 @@
                               "nodeType": "Identifier",
                               "overloadedDeclarations": [],
                               "referencedDeclaration": 392,
-                              "src": "13294:6:7",
+                              "src": "13292:6:7",
                               "typeDescriptions": {
                                 "typeIdentifier": "t_mapping$_t_uint256_$_t_struct$_Asset_$377_storage_$",
                                 "typeString": "mapping(uint256 => struct Tradingbot.Asset storage ref)"
@@ -30383,7 +30384,7 @@
                               "nodeType": "Identifier",
                               "overloadedDeclarations": [],
                               "referencedDeclaration": 1458,
-                              "src": "13301:1:7",
+                              "src": "13299:1:7",
                               "typeDescriptions": {
                                 "typeIdentifier": "t_uint256",
                                 "typeString": "uint256"
@@ -30394,7 +30395,7 @@
                             "isPure": false,
                             "lValueRequested": true,
                             "nodeType": "IndexAccess",
-                            "src": "13294:9:7",
+                            "src": "13292:9:7",
                             "typeDescriptions": {
                               "typeIdentifier": "t_struct$_Asset_$377_storage",
                               "typeString": "struct Tradingbot.Asset storage ref"
@@ -30407,7 +30408,7 @@
                         },
                         "id": 1471,
                         "nodeType": "ExpressionStatement",
-                        "src": "13287:16:7"
+                        "src": "13285:16:7"
                       }
                     ]
                   },
@@ -30427,7 +30428,7 @@
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
                       "referencedDeclaration": 1458,
-                      "src": "13257:1:7",
+                      "src": "13255:1:7",
                       "typeDescriptions": {
                         "typeIdentifier": "t_uint256",
                         "typeString": "uint256"
@@ -30441,13 +30442,13 @@
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
                       "referencedDeclaration": 396,
-                      "src": "13261:11:7",
+                      "src": "13259:11:7",
                       "typeDescriptions": {
                         "typeIdentifier": "t_uint256",
                         "typeString": "uint256"
                       }
                     },
-                    "src": "13257:15:7",
+                    "src": "13255:15:7",
                     "typeDescriptions": {
                       "typeIdentifier": "t_bool",
                       "typeString": "bool"
@@ -30466,7 +30467,7 @@
                         "name": "j",
                         "nodeType": "VariableDeclaration",
                         "scope": 1473,
-                        "src": "13247:6:7",
+                        "src": "13245:6:7",
                         "stateVariable": false,
                         "storageLocation": "default",
                         "typeDescriptions": {
@@ -30477,7 +30478,7 @@
                           "id": 1457,
                           "name": "uint",
                           "nodeType": "ElementaryTypeName",
-                          "src": "13247:4:7",
+                          "src": "13245:4:7",
                           "typeDescriptions": {
                             "typeIdentifier": "t_uint256",
                             "typeString": "uint256"
@@ -30496,7 +30497,7 @@
                       "kind": "number",
                       "lValueRequested": false,
                       "nodeType": "Literal",
-                      "src": "13254:1:7",
+                      "src": "13252:1:7",
                       "typeDescriptions": {
                         "typeIdentifier": "t_rational_0_by_1",
                         "typeString": "int_const 0"
@@ -30504,7 +30505,7 @@
                       "value": "0"
                     },
                     "nodeType": "VariableDeclarationStatement",
-                    "src": "13247:8:7"
+                    "src": "13245:8:7"
                   },
                   "loopExpression": {
                     "expression": {
@@ -30516,14 +30517,14 @@
                       "nodeType": "UnaryOperation",
                       "operator": "++",
                       "prefix": false,
-                      "src": "13274:3:7",
+                      "src": "13272:3:7",
                       "subExpression": {
                         "id": 1464,
                         "name": "j",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
                         "referencedDeclaration": 1458,
-                        "src": "13274:1:7",
+                        "src": "13272:1:7",
                         "typeDescriptions": {
                           "typeIdentifier": "t_uint256",
                           "typeString": "uint256"
@@ -30536,10 +30537,10 @@
                     },
                     "id": 1466,
                     "nodeType": "ExpressionStatement",
-                    "src": "13274:3:7"
+                    "src": "13272:3:7"
                   },
                   "nodeType": "ForStatement",
-                  "src": "13243:67:7"
+                  "src": "13241:67:7"
                 },
                 {
                   "expression": {
@@ -30554,7 +30555,7 @@
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
                       "referencedDeclaration": 394,
-                      "src": "13316:14:7",
+                      "src": "13314:14:7",
                       "typeDescriptions": {
                         "typeIdentifier": "t_uint256",
                         "typeString": "uint256"
@@ -30571,14 +30572,14 @@
                       "kind": "number",
                       "lValueRequested": false,
                       "nodeType": "Literal",
-                      "src": "13333:1:7",
+                      "src": "13331:1:7",
                       "typeDescriptions": {
                         "typeIdentifier": "t_rational_0_by_1",
                         "typeString": "int_const 0"
                       },
                       "value": "0"
                     },
-                    "src": "13316:18:7",
+                    "src": "13314:18:7",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
@@ -30586,7 +30587,7 @@
                   },
                   "id": 1477,
                   "nodeType": "ExpressionStatement",
-                  "src": "13316:18:7"
+                  "src": "13314:18:7"
                 },
                 {
                   "expression": {
@@ -30601,7 +30602,7 @@
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
                       "referencedDeclaration": 396,
-                      "src": "13340:11:7",
+                      "src": "13338:11:7",
                       "typeDescriptions": {
                         "typeIdentifier": "t_uint256",
                         "typeString": "uint256"
@@ -30618,14 +30619,14 @@
                       "kind": "number",
                       "lValueRequested": false,
                       "nodeType": "Literal",
-                      "src": "13354:1:7",
+                      "src": "13352:1:7",
                       "typeDescriptions": {
                         "typeIdentifier": "t_rational_0_by_1",
                         "typeString": "int_const 0"
                       },
                       "value": "0"
                     },
-                    "src": "13340:15:7",
+                    "src": "13338:15:7",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
@@ -30633,7 +30634,7 @@
                   },
                   "id": 1481,
                   "nodeType": "ExpressionStatement",
-                  "src": "13340:15:7"
+                  "src": "13338:15:7"
                 },
                 {
                   "expression": {
@@ -30648,7 +30649,7 @@
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
                       "referencedDeclaration": 398,
-                      "src": "13361:11:7",
+                      "src": "13359:11:7",
                       "typeDescriptions": {
                         "typeIdentifier": "t_uint256",
                         "typeString": "uint256"
@@ -30665,14 +30666,14 @@
                       "kind": "number",
                       "lValueRequested": false,
                       "nodeType": "Literal",
-                      "src": "13375:1:7",
+                      "src": "13373:1:7",
                       "typeDescriptions": {
                         "typeIdentifier": "t_rational_0_by_1",
                         "typeString": "int_const 0"
                       },
                       "value": "0"
                     },
-                    "src": "13361:15:7",
+                    "src": "13359:15:7",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
@@ -30680,7 +30681,7 @@
                   },
                   "id": 1485,
                   "nodeType": "ExpressionStatement",
-                  "src": "13361:15:7"
+                  "src": "13359:15:7"
                 },
                 {
                   "expression": {
@@ -30692,14 +30693,14 @@
                     "nodeType": "UnaryOperation",
                     "operator": "delete",
                     "prefix": true,
-                    "src": "13496:19:7",
+                    "src": "13494:19:7",
                     "subExpression": {
                       "id": 1486,
                       "name": "currentState",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
                       "referencedDeclaration": 366,
-                      "src": "13503:12:7",
+                      "src": "13501:12:7",
                       "typeDescriptions": {
                         "typeIdentifier": "t_enum$_State_$361",
                         "typeString": "enum Tradingbot.State"
@@ -30712,10 +30713,11 @@
                   },
                   "id": 1488,
                   "nodeType": "ExpressionStatement",
-                  "src": "13496:19:7"
+                  "src": "13494:19:7"
                 }
               ]
             },
+            "functionSelector": "1592f0ab",
             "id": 1490,
             "implemented": true,
             "kind": "function",
@@ -30732,19 +30734,19 @@
               "id": 1432,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "13033:0:7"
+              "src": "13031:0:7"
             },
             "scope": 1515,
-            "src": "13006:515:7",
+            "src": "13006:513:7",
             "stateMutability": "nonpayable",
             "virtual": false,
-            "visibility": "internal"
+            "visibility": "public"
           },
           {
             "body": {
               "id": 1501,
               "nodeType": "Block",
-              "src": "13547:83:7",
+              "src": "13545:83:7",
               "statements": [
                 {
                   "expression": {
@@ -30766,7 +30768,7 @@
                             "nodeType": "Identifier",
                             "overloadedDeclarations": [],
                             "referencedDeclaration": 4294967281,
-                            "src": "13561:3:7",
+                            "src": "13559:3:7",
                             "typeDescriptions": {
                               "typeIdentifier": "t_magic_message",
                               "typeString": "msg"
@@ -30779,7 +30781,7 @@
                           "lValueRequested": false,
                           "memberName": "sender",
                           "nodeType": "MemberAccess",
-                          "src": "13561:10:7",
+                          "src": "13559:10:7",
                           "typeDescriptions": {
                             "typeIdentifier": "t_address",
                             "typeString": "address"
@@ -30793,13 +30795,13 @@
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
                           "referencedDeclaration": 379,
-                          "src": "13575:5:7",
+                          "src": "13573:5:7",
                           "typeDescriptions": {
                             "typeIdentifier": "t_address",
                             "typeString": "address"
                           }
                         },
-                        "src": "13561:19:7",
+                        "src": "13559:19:7",
                         "typeDescriptions": {
                           "typeIdentifier": "t_bool",
                           "typeString": "bool"
@@ -30814,7 +30816,7 @@
                         "kind": "string",
                         "lValueRequested": false,
                         "nodeType": "Literal",
-                        "src": "13582:35:7",
+                        "src": "13580:35:7",
                         "typeDescriptions": {
                           "typeIdentifier": "t_stringliteral_1b988f8784cc3cf7ad7d1bf59197df07b7925b5a748a478400a8f83fd9e196ef",
                           "typeString": "literal_string \"Only owner can call this function\""
@@ -30841,7 +30843,7 @@
                         4294967278
                       ],
                       "referencedDeclaration": 4294967278,
-                      "src": "13553:7:7",
+                      "src": "13551:7:7",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_require_pure$_t_bool_$_t_string_memory_ptr_$returns$__$",
                         "typeString": "function (bool,string memory) pure"
@@ -30855,7 +30857,7 @@
                     "lValueRequested": false,
                     "names": [],
                     "nodeType": "FunctionCall",
-                    "src": "13553:65:7",
+                    "src": "13551:65:7",
                     "tryCall": false,
                     "typeDescriptions": {
                       "typeIdentifier": "t_tuple$__$",
@@ -30864,12 +30866,12 @@
                   },
                   "id": 1499,
                   "nodeType": "ExpressionStatement",
-                  "src": "13553:65:7"
+                  "src": "13551:65:7"
                 },
                 {
                   "id": 1500,
                   "nodeType": "PlaceholderStatement",
-                  "src": "13624:1:7"
+                  "src": "13622:1:7"
                 }
               ]
             },
@@ -30880,9 +30882,9 @@
               "id": 1491,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "13544:2:7"
+              "src": "13542:2:7"
             },
-            "src": "13526:104:7",
+            "src": "13524:104:7",
             "virtual": false,
             "visibility": "internal"
           },
@@ -30890,7 +30892,7 @@
             "body": {
               "id": 1513,
               "nodeType": "Block",
-              "src": "13653:73:7",
+              "src": "13651:73:7",
               "statements": [
                 {
                   "expression": {
@@ -30912,7 +30914,7 @@
                             "nodeType": "Identifier",
                             "overloadedDeclarations": [],
                             "referencedDeclaration": 4294967292,
-                            "src": "13667:5:7",
+                            "src": "13665:5:7",
                             "typeDescriptions": {
                               "typeIdentifier": "t_magic_block",
                               "typeString": "block"
@@ -30925,7 +30927,7 @@
                           "lValueRequested": false,
                           "memberName": "timestamp",
                           "nodeType": "MemberAccess",
-                          "src": "13667:15:7",
+                          "src": "13665:15:7",
                           "typeDescriptions": {
                             "typeIdentifier": "t_uint256",
                             "typeString": "uint256"
@@ -30939,13 +30941,13 @@
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
                           "referencedDeclaration": 402,
-                          "src": "13685:15:7",
+                          "src": "13683:15:7",
                           "typeDescriptions": {
                             "typeIdentifier": "t_uint256",
                             "typeString": "uint256"
                           }
                         },
-                        "src": "13667:33:7",
+                        "src": "13665:33:7",
                         "typeDescriptions": {
                           "typeIdentifier": "t_bool",
                           "typeString": "bool"
@@ -30960,7 +30962,7 @@
                         "kind": "string",
                         "lValueRequested": false,
                         "nodeType": "Literal",
-                        "src": "13702:11:7",
+                        "src": "13700:11:7",
                         "typeDescriptions": {
                           "typeIdentifier": "t_stringliteral_269922bd27dce1616982b0d8eecabaaf75f33ae9e1d42aa698b615f0c2279937",
                           "typeString": "literal_string \"Time over\""
@@ -30987,7 +30989,7 @@
                         4294967278
                       ],
                       "referencedDeclaration": 4294967278,
-                      "src": "13659:7:7",
+                      "src": "13657:7:7",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_require_pure$_t_bool_$_t_string_memory_ptr_$returns$__$",
                         "typeString": "function (bool,string memory) pure"
@@ -31001,7 +31003,7 @@
                     "lValueRequested": false,
                     "names": [],
                     "nodeType": "FunctionCall",
-                    "src": "13659:55:7",
+                    "src": "13657:55:7",
                     "tryCall": false,
                     "typeDescriptions": {
                       "typeIdentifier": "t_tuple$__$",
@@ -31010,12 +31012,12 @@
                   },
                   "id": 1511,
                   "nodeType": "ExpressionStatement",
-                  "src": "13659:55:7"
+                  "src": "13657:55:7"
                 },
                 {
                   "id": 1512,
                   "nodeType": "PlaceholderStatement",
-                  "src": "13720:1:7"
+                  "src": "13718:1:7"
                 }
               ]
             },
@@ -31026,18 +31028,18 @@
               "id": 1503,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "13650:2:7"
+              "src": "13648:2:7"
             },
-            "src": "13634:92:7",
+            "src": "13632:92:7",
             "virtual": false,
             "visibility": "internal"
           }
         ],
         "scope": 1516,
-        "src": "679:13050:7"
+        "src": "679:13048:7"
       }
     ],
-    "src": "32:13698:7"
+    "src": "32:13696:7"
   },
   "compiler": {
     "name": "solc",
@@ -31045,7 +31047,7 @@
   },
   "networks": {},
   "schemaVersion": "3.4.3",
-  "updatedAt": "2022-01-14T08:25:52.664Z",
+  "updatedAt": "2022-01-14T10:02:58.155Z",
   "devdoc": {
     "kind": "dev",
     "methods": {},
