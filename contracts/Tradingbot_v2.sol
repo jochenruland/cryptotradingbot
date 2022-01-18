@@ -27,7 +27,7 @@ contract Tradingbot {
     CONTRIBUTING,
     TRADING
   }
-  State public currentState = State.IDLE;
+  State public currentState;
 
   struct Asset {
     uint id;
@@ -64,6 +64,7 @@ contract Tradingbot {
   uint24 public poolFee_2 = 3000;
   uint24 public poolFee_3 = 10000;
 
+
   // 1a. Define the admin of the investment contract
   constructor() {
     owner = msg.sender;
@@ -78,9 +79,10 @@ contract Tradingbot {
     currentState = State.CONTRIBUTING;
   }
 
+
   // 2. DAO concept; anybody can contribute and will be registered as investor
   function contribute() external payable timeOut() {
-    require(currentState == State.CONTRIBUTING, "State must be CONTRIBUTING");
+    require(currentState == State.CONTRIBUTING, "State must be contributing");
     require(msg.value >= minAmount, "You must contribute the minimum amount");
     (bool _success, uint24 _poolFee) = _uniswapV3PoolExists(WETH, DAI);
     require(_success, "Pool does not exist");
@@ -114,7 +116,7 @@ contract Tradingbot {
     totalShares += amountOut;
 
     // an address is registered as an investor if it has contributed the min amount once and nextInvestorId will be incremented
-    nextInvestorId ++;
+    nextInvestorId++;
 
   }
 
@@ -125,6 +127,7 @@ contract Tradingbot {
     _refundInvestors();
 
     _reset();
+
   }
 
 
@@ -134,7 +137,7 @@ contract Tradingbot {
       require(block.timestamp >= contributionEnd, "Contributtion period not yet passed");
       require(getTokenBalance(DAI) > 0, "No more token of baseCurrency available in this contract");
       require(_value > 0, "Each registered asset must get a value of baseCurrency");
-      require( _tokenAddress != DAI, "You can not trade baseCurrency into baseCurrency");
+      require(_tokenAddress != DAI, "You can not trade baseCurrency into baseCurrency");
 
       (bool _success, uint24 _poolFee) = _uniswapV3PoolExists(DAI, _tokenAddress);
       require(_success, "Pool does not exist");
@@ -159,6 +162,7 @@ contract Tradingbot {
       uint _amountOut = SwapRouter.exactInputSingle(params);
 
       uint _price = uint(_amountIn / _amountOut);
+
 
       assets[nextAssetId] = Asset(nextAssetId, getTokenSticker(_tokenAddress), _tokenAddress, _price, 0);
       nextAssetId ++;
@@ -310,6 +314,8 @@ contract Tradingbot {
     _sticker = IERC20Metadata(tokenAddress).symbol();
   }
 
+  receive() external payable {}
+
   function _uniswapV3PoolExists(address _tokenIn, address _tokenOut) public view returns (bool pool_existence, uint24 _poolFee){
     if( SwapV3Factory.getPool(_tokenIn, _tokenOut, poolFee_1) != address(0) ){
         _poolFee = poolFee_1;
@@ -360,9 +366,8 @@ contract Tradingbot {
     IERC20(WETH).approve(address(this), balanceWETH);
 
     if (balanceWETH > 0) {
-       IWETH9(WETH).withdraw(balanceWETH);
+        IWETH9(WETH).withdraw(balanceWETH);
     }
-
 
     // Save value of contract balance and Calculate share for each investor
     require(address(this).balance > 0, "No ether available to be redistributed");
@@ -372,7 +377,6 @@ contract Tradingbot {
       uint _refund = _totalFunds * shares[investors[i]] / totalShares;
       payable(investors[i]).transfer(_refund);
     }
-
 
   }
 
@@ -393,10 +397,9 @@ contract Tradingbot {
     totalShares = 0;
     // Other currentState variables minAmount and contributionEnd must be reinitialized in function initialize()
 
-    delete currentState;
+    currentState = State.IDLE;
 
   }
-
 
   modifier onlyOwner() {
     require(msg.sender == owner, "Only owner can call this function");
