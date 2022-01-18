@@ -2,7 +2,7 @@
 const { expectRevert, time } = require('@openzeppelin/test-helpers');
 const assert = require('assert');
 
-//--------------------configuring web3---------------------------------------------------------------------------
+//--------------------configuring web3 for rinkeby/mainnet---------------------------------------------------------------------------
   // As we are not in the frontend application, we need the hdwallet-provider which provides some hdwallet features on top of the http protocol
   // When we configure web3 for our frontend application we can use the http provider
 const HDWalletProvider = require('@truffle/hdwallet-provider');
@@ -20,7 +20,13 @@ const provider = new HDWalletProvider(mnemonic, `wss://rinkeby.infura.io/ws/v3/e
 
 const web3 = new Web3(provider);
 
-//-------------------------------------------------------------------------------------------------------------------------------
+//----------------------configuring web3 for local mainnetFork using ganache-cli-----------------------------------------------------
+
+//const ganache = require('ganache-cli');
+//const Web3 = require('web3');
+//const web3 = new Web3('http://localhost:8545');
+
+//----------------------------------------------------------------------------------------------------------------------------------
 
 const compiledContractJson = require('../build/contracts/Tradingbot.json');
 
@@ -61,9 +67,6 @@ describe('Testing Tradingbot_v2', () => {
       from: accounts[0]
     });
 
-    let contractState = await contractInstance.methods.currentState().call();
-    console.log(contractState);
-
 
     await contractInstance.methods.initialize(100, 120).send({
       from: accounts[0]
@@ -94,20 +97,9 @@ describe('Testing Tradingbot_v2', () => {
     console.log(balance);
     assert(balance > oldBalance);
 
-    contractState = await contractInstance.methods.currentState().call();
-    console.log("Contract state:" , contractState);
-
-    await contractInstance.methods.cancelTradingbot().send({
-      from: accounts[0]
-    });
-
-    balance = await contractInstance.methods.getTokenBalance('0x5592EC0cfb4dbc12D3aB100b257153436a1f0FEa').call();
-    balance = parseFloat(balance);
-    console.log(balance);
-    assert(balance == 0);
-
   });
 
+/*
   it('Requires the minimum contribution', async () => {
     try {
       await contractInstance.methods.contribute().send({
@@ -141,14 +133,32 @@ describe('Testing Tradingbot_v2', () => {
     //await expectRevert(contractInstance.methods.contribute().send({from: accounts[1], value: '1000'}), 'Time over');
   });
 */
+  it("Shows all state variables", async () => {
+    const contractState = await contractInstance.methods.currentState().call();
+    console.log("Contract State: ", contractState);
+
+    const investorID = await contractInstance.methods.nextInvestorId().call();
+    console.log("InvestorID: ", investorID);
+
+    const assetID = await contractInstance.methods.nextAssetId().call();
+    console.log("AssetID: ", assetID);
+
+    const totalShares = await contractInstance.methods.totalShares().call();
+    console.log("shares1, shares2, totalShares: ", totalShares);
+
+    const min = await contractInstance.methods.minAmount().call();
+    console.log("MinAmount: ", min);
+
+    const contributionEndTime = await contractInstance.methods.contributionEnd().call();
+    console.log("End of contribution: ", contributionEndTime);
+
+  });
 
   it('Cancel tradingbot', async () => {
     const contractState = await contractInstance.methods.currentState().call();
     console.log("Contract state:" , contractState);
 
-    await contractInstance.methods.cancelTradingbot().send({
-      from: accounts[0]
-    });
+    await contractInstance.methods.cancelTradingbot().send({from: accounts[0]});
 
     let balance = await contractInstance.methods.getTokenBalance('0x5592EC0cfb4dbc12D3aB100b257153436a1f0FEa').call();
     balance = parseFloat(balance);
