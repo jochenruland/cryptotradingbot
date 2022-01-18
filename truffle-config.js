@@ -41,11 +41,11 @@ module.exports = {
     // tab if you use this network and you must also set the `host`, `port` and `network_id`
     // options below to some value.
     //
-    // development: {
-    //  host: "127.0.0.1",     // Localhost (default: none)
-    //  port: 8545,            // Standard Ethereum port (default: none)
-    //  network_id: "*",       // Any network (default: none)
-    // },
+    mainnetFork: {
+      host: "127.0.0.1",     // Localhost (default: none)
+      port: 8545,            // Standard Ethereum port (default: none)
+      network_id: "1",       // Any network (default: none)
+      },
     // Another network with more advanced options...
     // advanced: {
     // port: 8777,             // Custom port
@@ -85,7 +85,7 @@ module.exports = {
     */
 
     // Useful for private networks
-    // private: {
+    //private: {
     // provider: () => new HDWalletProvider(mnemonic, `https://network.io`),
     // network_id: 2111,   // This network is yours, in the cloud.
     // production: true    // Treats this network as if it was a public net. (default: false)
@@ -94,9 +94,10 @@ module.exports = {
 
   // Set default mocha options here, use special reporters etc.
   mocha: {
-    enableTimeouts: false,
-    before_timeout: 120000, // Here is 2min but can be whatever timeout is suitable for you.
-    retries: 3
+    //enableTimeouts: false,
+    //before_timeout: 1200000, // Here is 2min but can be whatever timeout is suitable for you.
+    //retries: 3
+    timeout: 2000000
   },
 
   // Configure your compilers
