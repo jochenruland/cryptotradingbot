@@ -1,4 +1,4 @@
-// SPDX-License-Identifier: MIT
+//SPDX-License-Identifier: MIT
 pragma solidity ^0.8.0;
 // pargma experimental ABIEncoderV2 no longer necessary from solidity 0.8.0
 
@@ -27,7 +27,7 @@ contract Tradingbot {
     CONTRIBUTING,
     TRADING
   }
-  State public currentState;
+  State public currentState = State.IDLE;
 
   struct Asset {
     uint id;
