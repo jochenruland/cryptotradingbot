@@ -7,7 +7,7 @@
     "test": "mocha --timeout 200000"
   },
   "author": "",
-  "license": "ISC",
+  "license": "MIT",
   "dependencies": {
     "@openzeppelin/contracts": "^4.4.1",
     "@openzeppelin/test-helpers": "^0.5.15",
