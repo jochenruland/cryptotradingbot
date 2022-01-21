@@ -49,6 +49,8 @@ contract Tradingbot {
   uint public minAmount;
   uint public contributionEnd;
 
+  uint public testVariable = 99;
+
   // allows to call functions from the Uniswap Factory contract
   IUniswapV3Factory public immutable SwapV3Factory = IUniswapV3Factory(0x1F98431c8aD98523631AE4a59f267346ea31F984);
 
