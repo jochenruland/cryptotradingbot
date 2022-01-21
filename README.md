@@ -1,5 +1,3 @@
-# This project is under construction !!!
-
 # Crypto-Tradingbot - Tutorial
 ## I. Scope
 This project provides a Tradingbot for ERC20 tokens on the Ethereum blockchain. The main developments can be found in the smart contract `./contracts/Tradingbot_v2.sol` and the testing script `./test/Tradingbot.test.js`.
@@ -81,7 +79,7 @@ Requires the owner/manager to execute the function marked with this modifier
 Requires the contribution period to be not yet over in order to execute the function marked with this modifier.
 
 ### 2. Testfile Tradingbot.test.js
-The testfile `Tradingbot.test.js` contains unit tests for all main functions and an integration test. Once you have deployed the smart contract you can run the test script by using `truffle test --network {yourNetwork}`. The network configuration is done in the `truffle-config.js` file. You can find all details regarding the truffle configuration in the truffle documentation. 
+The testfile `Tradingbot.test.js` contains unit tests for all main functions and an integration test. Once you have deployed the smart contract you can run the test script by using `truffle test --network {yourNetwork}`. The network configuration is done in the `truffle-config.js` file. You can find all details regarding the truffle configuration in the truffle documentation.
 
 ## III. Installation
 You can deploy your own instance of the tradingbot to any Ethereum testnet or the mainnet. Therefore clone this repo to the preferred directory on your computer using `git clone https://github.com/jochenruland/cryptotradingbot`. Then you have to create your own `.secret` file in the root directory containing the mnemonic of your wallet.
