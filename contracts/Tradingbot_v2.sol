@@ -56,8 +56,6 @@ contract Tradingbot {
   uint public minAmount;
   uint public contributionEnd;
 
-  uint public testVariable = 99;
-
   // allows to call functions from the Uniswap Factory contract
   IUniswapV3Factory public immutable SwapV3Factory = IUniswapV3Factory(0x1F98431c8aD98523631AE4a59f267346ea31F984);
 
@@ -67,11 +65,6 @@ contract Tradingbot {
   // we hardcode the token addresses (in production we would use an input parameter for this)
   address public constant WETH = 0xc778417E063141139Fce010982780140Aa0cD5Ab; // WETH on Rinkeby Testnet
   address public constant DAI = 0x5592EC0cfb4dbc12D3aB100b257153436a1f0FEa; // DAI on Rinkeby Testnet
-
-  // UniswapV3 allows 3 different pool fees
-  uint24 public poolFee_1 = 500;
-  uint24 public poolFee_2 = 3000;
-  uint24 public poolFee_3 = 10000;
 
 
   // 1a. Define the admin of the investment contract
@@ -249,26 +242,9 @@ contract Tradingbot {
 
     for(uint i; i < nextAssetId; i++) {
       if(getTokenBalance(assets[i].tokenAddress) > 0) {
-        (bool _success, uint24 _poolFee) = _uniswapV3PoolExists(assets[i].tokenAddress, DAI);
-        require(_success, "Pool does not exist");
 
-        uint _amountIn = getTokenBalance(assets[i].tokenAddress);
-
-        ISwapRouter.ExactInputSingleParams memory params = ISwapRouter.ExactInputSingleParams({
-          tokenIn: assets[i].tokenAddress,
-          tokenOut: DAI,
-          fee: _poolFee,
-          recipient: address(this),
-          deadline: block.timestamp + 15,
-          amountIn: _amountIn,
-          amountOutMinimum: 1,
-          sqrtPriceLimitX96: 0
-        });
-
-        // Approve the SwapRouter contract for the amount of token to be traded
-        IERC20(assets[i].tokenAddress).approve(address(SwapRouter), _amountIn);
-
-        SwapRouter.exactInputSingle(params);
+        uint amountIn = getTokenBalance(assets[i].tokenAddress);
+        _tradeOnUniswapV3(assets[i].tokenAddress, WETH, DAI, amountIn);
 
         //Updates the availableFunds of the asset in DAI
         assets[i].availableFunds = 0;
@@ -301,6 +277,11 @@ contract Tradingbot {
 
 
   function _uniswapV3PoolExists(address _tokenIn, address _tokenOut) public view returns (bool pool_existence, uint24 _poolFee){
+    // UniswapV3 allows 3 different pool fees
+    uint24 poolFee_1 = 500;
+    uint24 poolFee_2 = 3000;
+    uint24 poolFee_3 = 10000;
+
     if( SwapV3Factory.getPool(_tokenIn, _tokenOut, poolFee_1) != address(0) ){
         _poolFee = poolFee_1;
         pool_existence = true;
@@ -318,45 +299,48 @@ contract Tradingbot {
 
   }
 
-  uint poolFeeGlobal = 3000;
-
   //
   function _tradeOnUniswapV3(address _tokenIn, address _tokenOut, address _tokenBridge, uint _amountIn) public returns(uint _amountOut) {
 
     PoolFee memory poolFees;
     bool _success;
+    bool tradeSuccess;
+    bytes memory returnData;
 
     (_success, poolFees.fee1) = _uniswapV3PoolExists(_tokenIn, _tokenOut);
-    require(_success, "Pool does not exist");
-    _success = false;
 
-    // Approve the SwapRouter contract for the amount of DAI
-    // I first made an error to approve this contract - that's wrong, the DAI was already tranfered to this contract in contribute()
-    IERC20(_tokenIn).approve(address(SwapRouter), _amountIn);
+    if (_success) {
 
-    ISwapRouter.ExactInputSingleParams memory params = ISwapRouter.ExactInputSingleParams({
-      tokenIn: _tokenIn,
-      tokenOut: _tokenOut,
-      fee: poolFees.fee1,
-      recipient: address(this),
-      deadline: block.timestamp + 15,
-      amountIn: _amountIn,
-      amountOutMinimum: 1,
-      sqrtPriceLimitX96: 0
-    });
+      // Approve the SwapRouter contract for the amount of DAI
+      // I first made an error to approve this contract - that's wrong, the DAI was already tranfered to this contract in contribute()
+      IERC20(_tokenIn).approve(address(SwapRouter), _amountIn);
 
-    (bool tradeSuccess, bytes memory returnData) =
-      address(SwapRouter).call( // This creates a low level call to the contract
-        abi.encodePacked( // This encodes the function to call and the parameters to pass to that function
-          SwapRouter.exactInputSingle.selector, // This is the function identifier of the function we want to call
-          abi.encode(params) // This encodes the parameter we want to pass to the function
-        )
-      );
+      ISwapRouter.ExactInputSingleParams memory params = ISwapRouter.ExactInputSingleParams({
+        tokenIn: _tokenIn,
+        tokenOut: _tokenOut,
+        fee: poolFees.fee1,
+        recipient: address(this),
+        deadline: block.timestamp + 15,
+        amountIn: _amountIn,
+        amountOutMinimum: 1,
+        sqrtPriceLimitX96: 0
+      });
 
-    if (tradeSuccess) { // SwapRouter.exactInputSingle completed successfully (did not revert)
-      _amountOut = abi.decode(returnData, (uint256));
+      (tradeSuccess, returnData) =
+        address(SwapRouter).call( // This creates a low level call to the contract
+          abi.encodePacked( // This encodes the function to call and the parameters to pass to that function
+            SwapRouter.exactInputSingle.selector, // This is the function identifier of the function we want to call
+            abi.encode(params) // This encodes the parameter we want to pass to the function
+          )
+        );
+
+      if (tradeSuccess) { // SwapRouter.exactInputSingle completed successfully (did not revert)
+        _amountOut = abi.decode(returnData, (uint256));
+        return _amountOut;
+      }
     }
-    else { // SwapRouter.exactInputSingle. However, the complete tx did not revert and we can handle the case here.
+
+    if (_success == false || tradeSuccess == false) { // SwapRouter.exactInputSingle. However, the complete tx did not revert and we can handle the case here.
       // TRY THE MULTIHOP TRADE
       (_success, poolFees.fee2) = _uniswapV3PoolExists(_tokenIn, _tokenBridge);
       require(_success, "Pool to bridge does not exist");
@@ -377,8 +361,10 @@ contract Tradingbot {
 
       // Executes the swap.
       _amountOut = SwapRouter.exactInput(params1);
-
+      return _amountOut;
     }
+
+    else {revert("Could not trade asset");}
 
   }
 
