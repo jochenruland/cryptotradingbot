@@ -13,6 +13,7 @@ import "@openzeppelin/contracts/interfaces/IERC20.sol";
 import "@openzeppelin/contracts/token/ERC20/extensions/IERC20Metadata.sol";
 
 
+
 interface IWETH9 {
     function balanceOf(address account) external view returns (uint256);
     function deposit() external payable;
@@ -35,6 +36,12 @@ contract Tradingbot {
     address tokenAddress;
     uint lastPrice;
     uint availableFunds;
+  }
+
+  struct PoolFee {
+    uint24 fee1;
+    uint24 fee2;
+    uint24 fee3;
   }
 
   address public owner;
@@ -135,38 +142,18 @@ contract Tradingbot {
 
   // 4. Initial buy of token to be traded
   // As long as there are funds of baseCurrency available you can invest in token
-  function initialAssetBuy(address _tokenAddress, uint _value) external onlyOwner() {
+  function initialAssetBuy(address tokenOut, uint value) external onlyOwner() {
       require(block.timestamp >= contributionEnd, "Contributtion period not yet passed");
       require(getTokenBalance(DAI) > 0, "No more token of baseCurrency available in this contract");
-      require(_value > 0, "Each registered asset must get a value of baseCurrency");
-      require(_tokenAddress != DAI, "You can not trade baseCurrency into baseCurrency");
+      require(value > 0, "Each registered asset must get a value of baseCurrency");
+      require(tokenOut != DAI, "You can not trade baseCurrency into baseCurrency");
 
-      (bool _success, uint24 _poolFee) = _uniswapV3PoolExists(DAI, _tokenAddress);
-      require(_success, "Pool does not exist");
-
-      uint _amountIn = _value;
-
-      ISwapRouter.ExactInputSingleParams memory params = ISwapRouter.ExactInputSingleParams({
-        tokenIn: DAI,
-        tokenOut: _tokenAddress,
-        fee: _poolFee,
-        recipient: address(this),
-        deadline: block.timestamp + 60,
-        amountIn: _amountIn,
-        amountOutMinimum: 1,
-        sqrtPriceLimitX96: 0
-      });
-
-      // Approve the SwapRouter contract for the amount of DAI
-      // I first made an error to approve this contract - that's wrong, the DAI was already tranfered to this contract in contribute()
-      IERC20(DAI).approve(address(SwapRouter), _amountIn);
-
-      uint _amountOut = SwapRouter.exactInputSingle(params);
-
-      uint _price = uint(_amountIn / _amountOut);
+      // function trade
+      uint amountOut = _tradeOnUniswapV3(DAI, tokenOut, WETH, value);
+      uint price = (value / amountOut);
 
 
-      assets[nextAssetId] = Asset(nextAssetId, getTokenSticker(_tokenAddress), _tokenAddress, _price, 0);
+      assets[nextAssetId] = Asset(nextAssetId, getTokenSticker(tokenOut), tokenOut, price, 0);
       nextAssetId ++;
 
       currentState = State.TRADING;
@@ -175,7 +162,7 @@ contract Tradingbot {
 
   // 5. Sell token depending on predicted price development
   //
-  function sellToken(uint _assetId, /*uint currentPrice,*/ uint predPrice, uint tuner) external onlyOwner() returns (bool _trade) {
+  function sellToken(uint _assetId, /*uint currentPrice,*/ uint predPrice, uint tuner) external onlyOwner() {
     require(currentState == State.TRADING, "Tradingbot must be started first");
     require(getTokenBalance(assets[_assetId].tokenAddress) > 0, "No token available");
 
@@ -211,14 +198,12 @@ contract Tradingbot {
 
       assets[_assetId].lastPrice = _price;
 
-      _trade = true;
-
     }
   }
   //
 
   // 6. Buy token depending on predicted price development
-  function buyToken(uint _assetId, /*uint currentPrice,*/ uint predPrice, uint tuner) external onlyOwner() returns (bool _trade) {
+  function buyToken(uint _assetId, /*uint currentPrice,*/ uint predPrice, uint tuner) external onlyOwner() {
     require(currentState == State.TRADING, "Tradingbot must be started first");
     require(assets[_assetId].availableFunds > 0, "No funds available");
 
@@ -253,8 +238,6 @@ contract Tradingbot {
       uint _price = _amountIn /_amountOut;
 
       assets[_assetId].lastPrice = _price;
-
-      _trade = true;
 
     }
   }
@@ -316,7 +299,6 @@ contract Tradingbot {
     _sticker = IERC20Metadata(tokenAddress).symbol();
   }
 
-  receive() external payable {}
 
   function _uniswapV3PoolExists(address _tokenIn, address _tokenOut) public view returns (bool pool_existence, uint24 _poolFee){
     if( SwapV3Factory.getPool(_tokenIn, _tokenOut, poolFee_1) != address(0) ){
@@ -331,6 +313,70 @@ contract Tradingbot {
     else if(SwapV3Factory.getPool(_tokenIn, _tokenOut, poolFee_3) != address(0)){
         _poolFee = poolFee_3;
         pool_existence = true;
+
+    }
+
+  }
+
+  uint poolFeeGlobal = 3000;
+
+  //
+  function _tradeOnUniswapV3(address _tokenIn, address _tokenOut, address _tokenBridge, uint _amountIn) public returns(uint _amountOut) {
+
+    PoolFee memory poolFees;
+    bool _success;
+
+    (_success, poolFees.fee1) = _uniswapV3PoolExists(_tokenIn, _tokenOut);
+    require(_success, "Pool does not exist");
+    _success = false;
+
+    // Approve the SwapRouter contract for the amount of DAI
+    // I first made an error to approve this contract - that's wrong, the DAI was already tranfered to this contract in contribute()
+    IERC20(_tokenIn).approve(address(SwapRouter), _amountIn);
+
+    ISwapRouter.ExactInputSingleParams memory params = ISwapRouter.ExactInputSingleParams({
+      tokenIn: _tokenIn,
+      tokenOut: _tokenOut,
+      fee: poolFees.fee1,
+      recipient: address(this),
+      deadline: block.timestamp + 15,
+      amountIn: _amountIn,
+      amountOutMinimum: 1,
+      sqrtPriceLimitX96: 0
+    });
+
+    (bool tradeSuccess, bytes memory returnData) =
+      address(SwapRouter).call( // This creates a low level call to the contract
+        abi.encodePacked( // This encodes the function to call and the parameters to pass to that function
+          SwapRouter.exactInputSingle.selector, // This is the function identifier of the function we want to call
+          abi.encode(params) // This encodes the parameter we want to pass to the function
+        )
+      );
+
+    if (tradeSuccess) { // SwapRouter.exactInputSingle completed successfully (did not revert)
+      _amountOut = abi.decode(returnData, (uint256));
+    }
+    else { // SwapRouter.exactInputSingle. However, the complete tx did not revert and we can handle the case here.
+      // TRY THE MULTIHOP TRADE
+      (_success, poolFees.fee2) = _uniswapV3PoolExists(_tokenIn, _tokenBridge);
+      require(_success, "Pool to bridge does not exist");
+      _success = false;
+
+      (_success, poolFees.fee3 ) = _uniswapV3PoolExists(_tokenBridge, _tokenOut);
+      require(_success, "Pool from _tokenBridge to _tokenOut does not exist");
+      _success = false;
+
+
+      ISwapRouter.ExactInputParams memory params1 = ISwapRouter.ExactInputParams({
+        path: abi.encodePacked(_tokenIn, poolFees.fee2, _tokenBridge, poolFees.fee3, _tokenOut),
+        recipient: address(this),
+        deadline: block.timestamp + 15,
+        amountIn: _amountIn,
+        amountOutMinimum: 1
+      });
+
+      // Executes the swap.
+      _amountOut = SwapRouter.exactInput(params1);
 
     }
 
