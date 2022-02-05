@@ -22,6 +22,7 @@ interface IWETH9 {
 }
 
 
+
 contract Tradingbot {
   enum State {
     IDLE,
@@ -45,6 +46,7 @@ contract Tradingbot {
   }
 
   address public owner;
+  uint8 public direction;
 
   mapping(uint => address) public investors; // registered investors
   mapping(address => uint) public shares; // shares per investor
@@ -65,6 +67,7 @@ contract Tradingbot {
   // we hardcode the token addresses (in production we would use an input parameter for this)
   address public constant WETH = 0xc778417E063141139Fce010982780140Aa0cD5Ab; // WETH on Rinkeby Testnet
   address public constant DAI = 0x5592EC0cfb4dbc12D3aB100b257153436a1f0FEa; // DAI on Rinkeby Testnet
+  address public constant UNI = 0x1f9840a85d5aF5bf1D1762F925BDADdC4201F984; // Uniswap on Rinkeby Testnet
 
 
   // 1a. Define the admin of the investment contract
@@ -159,37 +162,29 @@ contract Tradingbot {
     require(currentState == State.TRADING, "Tradingbot must be started first");
     require(getTokenBalance(assets[_assetId].tokenAddress) > 0, "No token available");
 
-    (bool _success, uint24 _poolFee) = _uniswapV3PoolExists(assets[_assetId].tokenAddress, DAI);
-    require(_success, "Pool does not exist");
-
     // Check if price predicted in future x hours < (last buy - tuner)
     if(predPrice < (assets[_assetId].lastPrice - tuner)) {
 
-      uint _amountIn = getTokenBalance(assets[_assetId].tokenAddress);
+      uint value = getTokenBalance(assets[_assetId].tokenAddress);
 
-      ISwapRouter.ExactInputSingleParams memory params = ISwapRouter.ExactInputSingleParams({
-        tokenIn: assets[_assetId].tokenAddress,
-        tokenOut: DAI,
-        fee: _poolFee,
-        recipient: address(this),
-        deadline: block.timestamp + 15,
-        amountIn: _amountIn,
-        amountOutMinimum: 1,
-        sqrtPriceLimitX96: 0
-      });
+      address tokenBridge;
 
-      // Approve the SwapRouter contract for the amount of token to be traded
-      IERC20(assets[_assetId].tokenAddress).approve(address(SwapRouter), _amountIn);
+      if (assets[_assetId].tokenAddress == WETH) {
+        tokenBridge = UNI;
+      }
+      else {
+        tokenBridge = WETH;
+      }
 
-      uint _amountOut = SwapRouter.exactInputSingle(params);
+      // Trade on uniswapV3
+      uint amountOut = _tradeOnUniswapV3(assets[_assetId].tokenAddress, DAI, tokenBridge, value);
+      uint price = (amountOut / value);
+
 
       //Updates the availableFunds of the asset in DAI
-      assets[_assetId].availableFunds += _amountOut;
+      assets[_assetId].availableFunds += amountOut;
 
-      //Calculates the selling price in DAI
-      uint _price = _amountOut /_amountIn;
-
-      assets[_assetId].lastPrice = _price;
+      assets[_assetId].lastPrice = price;
 
     }
   }
@@ -200,37 +195,28 @@ contract Tradingbot {
     require(currentState == State.TRADING, "Tradingbot must be started first");
     require(assets[_assetId].availableFunds > 0, "No funds available");
 
-    (bool _success, uint24 _poolFee) = _uniswapV3PoolExists(DAI, assets[_assetId].tokenAddress);
-    require(_success, "Pool does not exist");
-
     // Check if price predicted in future x hours < (last buy - tuner)
     if(predPrice > (assets[_assetId].lastPrice + tuner)) {
 
-      uint _amountIn = assets[_assetId].availableFunds;
+      uint value = assets[_assetId].availableFunds;
 
-      ISwapRouter.ExactInputSingleParams memory params = ISwapRouter.ExactInputSingleParams({
-        tokenIn: DAI,
-        tokenOut: assets[_assetId].tokenAddress,
-        fee: _poolFee,
-        recipient: address(this),
-        deadline: block.timestamp + 60,
-        amountIn: _amountIn,
-        amountOutMinimum: 1,
-        sqrtPriceLimitX96: 0
-      });
+      address tokenBridge;
 
-      // Approve the SwapRouter contract for the amount of token to be traded
-      IERC20(DAI).approve(address(SwapRouter), _amountIn);
+      if (assets[_assetId].tokenAddress == WETH) {
+        tokenBridge = UNI;
+      }
+      else {
+        tokenBridge = WETH;
+      }
 
-      uint _amountOut = SwapRouter.exactInputSingle(params);
+      // Trade on uniswapV3
+      uint amountOut = _tradeOnUniswapV3(DAI, assets[_assetId].tokenAddress, tokenBridge, value);
+      uint price = (value / amountOut);
 
       //Updates the availableFunds of the asset in DAI
-      assets[_assetId].availableFunds -= _amountIn;
+      assets[_assetId].availableFunds -= value;
 
-      //Calculates the buying price in DAI
-      uint _price = _amountIn /_amountOut;
-
-      assets[_assetId].lastPrice = _price;
+      assets[_assetId].lastPrice = price;
 
     }
   }
@@ -243,8 +229,13 @@ contract Tradingbot {
     for(uint i; i < nextAssetId; i++) {
       if(getTokenBalance(assets[i].tokenAddress) > 0) {
 
-        uint amountIn = getTokenBalance(assets[i].tokenAddress);
-        _tradeOnUniswapV3(assets[i].tokenAddress, WETH, DAI, amountIn);
+        if(assets[i].tokenAddress != WETH) {
+          uint amountIn = getTokenBalance(assets[i].tokenAddress);
+          _tradeOnUniswapV3(assets[i].tokenAddress, WETH, DAI, amountIn);
+        }
+
+        IWETH9(WETH).approve(address(this), getTokenBalance(WETH));
+        IWETH9(WETH).withdraw(getTokenBalance(WETH));
 
         //Updates the availableFunds of the asset in DAI
         assets[i].availableFunds = 0;
@@ -310,7 +301,7 @@ contract Tradingbot {
     (_success, poolFees.fee1) = _uniswapV3PoolExists(_tokenIn, _tokenOut);
 
     if (_success) {
-
+      direction = 1;
       // Approve the SwapRouter contract for the amount of DAI
       // I first made an error to approve this contract - that's wrong, the DAI was already tranfered to this contract in contribute()
       IERC20(_tokenIn).approve(address(SwapRouter), _amountIn);
@@ -336,11 +327,13 @@ contract Tradingbot {
 
       if (tradeSuccess) { // SwapRouter.exactInputSingle completed successfully (did not revert)
         _amountOut = abi.decode(returnData, (uint256));
+
         return _amountOut;
       }
     }
 
     if (_success == false || tradeSuccess == false) { // SwapRouter.exactInputSingle. However, the complete tx did not revert and we can handle the case here.
+      direction = 2;
       // TRY THE MULTIHOP TRADE
       (_success, poolFees.fee2) = _uniswapV3PoolExists(_tokenIn, _tokenBridge);
       require(_success, "Pool to bridge does not exist");
@@ -349,6 +342,7 @@ contract Tradingbot {
       (_success, poolFees.fee3 ) = _uniswapV3PoolExists(_tokenBridge, _tokenOut);
       require(_success, "Pool from _tokenBridge to _tokenOut does not exist");
       _success = false;
+
 
 
       ISwapRouter.ExactInputParams memory params1 = ISwapRouter.ExactInputParams({
@@ -361,6 +355,8 @@ contract Tradingbot {
 
       // Executes the swap.
       _amountOut = SwapRouter.exactInput(params1);
+
+
       return _amountOut;
     }
 
@@ -368,39 +364,16 @@ contract Tradingbot {
 
   }
 
+
   // swap DAI to WETH, then iterate over the nextInvestorId and refund the contract balance to the investors in relation to their shares
   function _refundInvestors() public payable {
-    require(getTokenBalance(DAI) > 0, "No funds to be redistributed");
+    if (getTokenBalance(DAI) > 0) {
+      uint amountIn = getTokenBalance(DAI);
+      uint amountOut = _tradeOnUniswapV3(DAI, WETH, UNI, amountIn);
 
-    (bool _success, uint24 _poolFee) = _uniswapV3PoolExists(DAI, WETH);
-    require(_success, "Pool does not exist");
+      IWETH9(WETH).approve(address(this), amountOut);
+      IWETH9(WETH).withdraw(amountOut);
 
-    uint _amountIn = getTokenBalance(DAI);
-
-    ISwapRouter.ExactInputSingleParams memory params = ISwapRouter.ExactInputSingleParams({
-      tokenIn: DAI,
-      tokenOut: WETH,
-      fee: _poolFee,
-      recipient: address(this),
-      deadline: block.timestamp + 15,
-      amountIn: _amountIn,
-      amountOutMinimum: 1,
-      sqrtPriceLimitX96: 0
-    });
-
-    // Approve the SwapRouter contract for the amount of DAI
-    // I first made an error to approve this contract - that's wrong, the DAI was already tranfered to this contract in contribute()
-    IERC20(DAI).approve(address(SwapRouter), _amountIn);
-
-    SwapRouter.exactInputSingle(params);
-
-    // Unwrap WETH to ETH and send to this contract
-    uint balanceWETH = IWETH9(WETH).balanceOf(address(this));
-
-    IERC20(WETH).approve(address(this), balanceWETH);
-
-    if (balanceWETH > 0) {
-        IWETH9(WETH).withdraw(balanceWETH);
     }
 
     // Save value of contract balance and Calculate share for each investor
@@ -444,5 +417,9 @@ contract Tradingbot {
     require(block.timestamp < contributionEnd, "Time over");
     _;
   }
+
+  fallback (bytes calldata _input) external payable returns (bytes memory _output) {}
+
+  receive() external payable {}
 
 }
