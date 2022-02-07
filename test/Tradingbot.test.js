@@ -18,13 +18,13 @@ const provider = new HDWalletProvider(mnemonic, `wss://rinkeby.infura.io/ws/v3/e
 const web3 = new Web3(provider);
 
 //------------------- requiring some testing Libraries---------------------------------------------------------------------------
-//require('@openzeppelin/test-helpers/configure')({provider: () => new HDWalletProvider(mnemonic, `wss://rinkeby.infura.io/ws/v3/e9fbb5967c14460cbf78edd9d129532f`});
 
 
 const { expectRevert, time } = require('@openzeppelin/test-helpers');
 const assert = require('assert');
 
-const { advanceTime } = require('./helpers/advanceTime');
+// Not needed in this testfile but generally helpful when using ganache-cli - works like OpenZeppelin testhelpers module {time}
+// const { advanceTime } = require('./helpers/advanceTime');
 
 
 //----------------------configuring web3 for local mainnetFork using ganache-cli-----------------------------------------------------
@@ -38,7 +38,6 @@ const { advanceTime } = require('./helpers/advanceTime');
 const compiledContractJson = require('../build/contracts/Tradingbot.json');
 
 process.env.UV_THREADPOOL_SIZE=10;
-
 
 let accounts;
 let contractInstance;
@@ -76,12 +75,14 @@ describe('Testing Tradingbot_v2', () => {
 
   it('Initializes tradingsbot, allows to contribute from different accounts and swaps Ether to Dai', async () => {
 
+
     await contractInstance.methods._reset().send({
       from: accounts[0]
     });
 
 
-    await contractInstance.methods.initialize(100, 120).send({
+
+    await contractInstance.methods.initialize(100, 70).send({
       from: accounts[0]
     });
 
@@ -95,20 +96,20 @@ describe('Testing Tradingbot_v2', () => {
       value: '1000'
     });
 
-    let balance = await contractInstance.methods.getTokenBalance('0x5592EC0cfb4dbc12D3aB100b257153436a1f0FEa').call();
-    balance = parseFloat(balance);
-    console.log(balance);
-    assert(balance > 0);
+    let balance1 = await contractInstance.methods.getTokenBalance('0x5592EC0cfb4dbc12D3aB100b257153436a1f0FEa').call();
+    balance1 = parseInt(balance1);
+    console.log(balance1);
+    assert(balance1 > 0);
 
     await contractInstance.methods.contribute().send({
       from: accounts[1],
       value: '1000'
     });
 
-    const oldBalance = balance;
-    balance = await contractInstance.methods.getTokenBalance('0x5592EC0cfb4dbc12D3aB100b257153436a1f0FEa').call();
-    console.log(balance);
-    assert(balance > oldBalance);
+    let balance2 = await contractInstance.methods.getTokenBalance('0x5592EC0cfb4dbc12D3aB100b257153436a1f0FEa').call();
+    balance2 = parseInt(balance2);
+    console.log(balance2);
+    assert(balance2 > balance1);
 
   });
 
@@ -120,12 +121,12 @@ describe('Testing Tradingbot_v2', () => {
       });
       assert(false); // if it has not thrown an error until this line, the test must fail
     } catch(err) {
-      console.log(err);
-      assert(err);
+        console.log(err);
+        assert(err);
     }
   });
-*/
-  it("Shows all state variables", async () => {
+
+  it("Check initial state of all state variables", async () => {
     const contractState = await contractInstance.methods.currentState().call();
     console.log("Contract State: ", contractState);
 
@@ -146,20 +147,20 @@ describe('Testing Tradingbot_v2', () => {
 
   });
 
-/*
+
   it('Cancel tradingbot', async () => {
     const contractState = await contractInstance.methods.currentState().call();
-    console.log("Contract state:" , contractState);
+    console.log("Contract state 1:" , contractState);
 
     await contractInstance.methods.cancelTradingbot().send({from: accounts[0]});
 
-    let balance = await contractInstance.methods.getTokenBalance('0x5592EC0cfb4dbc12D3aB100b257153436a1f0FEa').call();
-    balance = parseFloat(balance);
-    console.log(balance);
-    assert(balance == 0);
+    let balance3 = await contractInstance.methods.getTokenBalance('0x5592EC0cfb4dbc12D3aB100b257153436a1f0FEa').call();
+    balance3 = parseInt(balance3);
+    console.log(balance3);
+    assert(balance3 == 0);
   });
 
-*/
+
 
 /*
   // This test will only work on local testing environment as you cannot advance time of a public BC
@@ -181,7 +182,7 @@ describe('Testing Tradingbot_v2', () => {
       await expectRevert(contractInstance.methods.contribute().send({from: accounts[1], value: '1000'}), 'Time over');
     });
 
-*/
+
 
   it('Buys an initial asset if pool exists', async () => {
 
@@ -189,71 +190,84 @@ describe('Testing Tradingbot_v2', () => {
       from: accounts[0]
     });
 
+    const contractState = await contractInstance.methods.currentState().call();
+    console.log("Contract state 2:" , contractState);
+
     await contractInstance.methods.initialize(100, 70).send({
       from: accounts[0]
     });
 
-
-    const min = await contractInstance.methods.minAmount().call();
-    console.log("Minimum Amount: ", min);
-    assert.equal(100, min);
 
     await contractInstance.methods.contribute().send({
       from: accounts[0],
       value: '1000'
     });
 
-    let balance = await contractInstance.methods.getTokenBalance('0x5592EC0cfb4dbc12D3aB100b257153436a1f0FEa').call();
-    balance = parseFloat(balance);
-    console.log("Balance after first contribution: ", balance);
-    assert(balance > 0);
+    let balance4 = await contractInstance.methods.getTokenBalance('0x5592EC0cfb4dbc12D3aB100b257153436a1f0FEa').call();
+    balance4 = parseInt(balance4);
+    console.log("Balance after first contribution: ", balance4);
+    assert(balance4 > 0);
 
     await contractInstance.methods.contribute().send({
       from: accounts[1],
       value: '1000'
     });
 
-    const oldBalance = balance;
-    balance = await contractInstance.methods.getTokenBalance('0x5592EC0cfb4dbc12D3aB100b257153436a1f0FEa').call();
-    console.log("Balance after second contribution: ", balance);
-    assert(balance > oldBalance);
 
-    console.log("Timestamp before: ", 99);
-    await sleep(70000);
-    console.log("Timestamp after: ", 199);
+    let balance5 = await contractInstance.methods.getTokenBalance('0x5592EC0cfb4dbc12D3aB100b257153436a1f0FEa').call();
+    balance5 = parseInt(balance5);
+    console.log("Balance after second contribution: ", balance4);
+    assert(balance5 > balance4);
 
-    const investAmount = 5000000;
-    await contractInstance.methods.initialAssetBuy('0x1f9840a85d5aF5bf1D1762F925BDADdC4201F984', 50000000000).send({from: accounts[0]});
 
-    console.log("Timestamp after: ", 299);
+    await sleep(70000).then(console.log("Pause finished"));
 
-    balance = await contractInstance.methods.getTokenBalance('0x1f9840a85d5aF5bf1D1762F925BDADdC4201F984').call();
-    console.log("Balance of UNI: ", balance);
+    const investAmount = 500000000;
+    await contractInstance.methods.initialAssetBuy('0x1f9840a85d5aF5bf1D1762F925BDADdC4201F984', investAmount).send({from: accounts[0]});
+
+    const balance6 = await contractInstance.methods.getTokenBalance('0x1f9840a85d5aF5bf1D1762F925BDADdC4201F984').call();
+    console.log("Balance of UNI: ", balance6);
 
 
   });
-/*
 
-  it('Sells the initial asset if prediction below asset.price', async () => {
+  it('Sells the initial asset if prediction below assets last price', async () => {
 
-    let artPricePrediction = await contractInstance.methods.assets[0].lastPrice().call();
+    const assetToSell = await contractInstance.methods.assets(0).call();
 
-    artPricePrediction = parseInt(artPricePrediction / 2);
+    console.log('4. ELEMENT from assetToSell', assetToSell[3]);
+    console.log('8. ELEMENT from assetToSell', assetToSell[8]);
 
-    await contractInstance.methods.sellToken(0, artPricePrediction, 3).send({from: accounts[0]});
+    console.log('Key of 8. ELEMENT from assetToSell', Object.keys(assetToSell)[8] );
 
-  });
+    console.log(assetToSell);
 
-  it('Buys the initial asset if prediction above asset.price', async () => {
 
-    let artPricePrediction = await contractInstance.methods.assets[0].lastPrice().call();
 
-    artPricePrediction = parseInt(artPricePrediction * 2);
+    const artSellPrediction = parseInt(assetToSell[3]) - 100;
 
-    await contractInstance.methods.buyToken(0, artPricePrediction, 3).send({from: accounts[0]});
+
+
+    await contractInstance.methods.sellToken(0, artSellPrediction, 3).send({from: accounts[0]});
 
   });
 
 */
+  it('Buys the initial asset if prediction above asset.price', async () => {
+
+    const assetToBuy = await contractInstance.methods.assets(0).call();
+
+    const artBuyPrediction = parseInt(assetToBuy[3]) + 100;
+
+    await contractInstance.methods.buyToken(0, artBuyPrediction, 3).send({from: accounts[0]});
+
+  });
+
+  /*
+  it('Liquidates portfolio and resets state variables', async () => {
+
+  });
+  */
+
 
 })
