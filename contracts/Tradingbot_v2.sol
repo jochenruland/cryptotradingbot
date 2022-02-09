@@ -11,6 +11,8 @@ import "@uniswap/v3-periphery/contracts/interfaces/ISwapRouter.sol";
 
 import "@openzeppelin/contracts/interfaces/IERC20.sol";
 import "@openzeppelin/contracts/token/ERC20/extensions/IERC20Metadata.sol";
+import "@openzeppelin/contracts/utils/math/SafeMath.sol";
+import "@OpenZeppelin/contracts/security/ReentrancyGuard.sol";
 
 
 
@@ -24,7 +26,9 @@ interface IWETH9 {
 
 
 
-contract Tradingbot {
+contract Tradingbot is ReentrancyGuard {
+  using SafeMath for uint;
+
   enum State {
     IDLE,
     CONTRIBUTING,
@@ -48,6 +52,7 @@ contract Tradingbot {
 
   address public owner;
   uint8 public direction;
+  bool private protect;
 
   mapping(uint => address) public investors; // registered investors
   mapping(address => uint) public shares; // shares per investor
@@ -76,24 +81,28 @@ contract Tradingbot {
     owner = msg.sender;
   }
 
+  fallback (bytes calldata _input) external payable returns (bytes memory _output) {}
+
+  receive() external payable {}
+
   // 1b. Seperate initialize() function to reinitialize the contract for trading; not possible if this would be defined in constructor
   function initialize(uint _minAmount, uint duration) external onlyOwner() {
     require(currentState == State.IDLE, "State must be idle");
     minAmount = _minAmount;
-    contributionEnd = block.timestamp + duration;
+    contributionEnd = block.timestamp.add(duration);
 
     currentState = State.CONTRIBUTING;
   }
 
 
   // 2. DAO concept; anybody can contribute and will be registered as investor
-  function contribute() external payable timeOut() {
+  function contribute() external payable timeOut() nonReentrant {
     require(currentState == State.CONTRIBUTING, "State must be contributing");
     require(msg.value >= minAmount, "You must contribute the minimum amount");
     (bool _success, uint24 _poolFee) = _uniswapV3PoolExists(WETH, DAI);
     require(_success, "Pool does not exist");
 
-    uint256 deadline = block.timestamp + 15; // using 'now' for convenience, for mainnet pass deadline from frontend!
+    uint256 deadline = block.timestamp.add(15); // using 'now' for convenience, for mainnet pass deadline from frontend!
     address tokenIn = WETH;
     address tokenOut = DAI;
     uint24 fee = _poolFee;
@@ -118,8 +127,8 @@ contract Tradingbot {
 
     // an investor can contribute mutiple times; therefore shares neet to be +=;
     investors[nextInvestorId] = msg.sender;
-    shares[msg.sender] += amountOut;
-    totalShares += amountOut;
+    shares[msg.sender] = shares[msg.sender].add(amountOut);
+    totalShares = totalShares.add(amountOut);
 
     // an address is registered as an investor if it has contributed the min amount once and nextInvestorId will be incremented
     nextInvestorId++;
@@ -164,7 +173,7 @@ contract Tradingbot {
     require(getTokenBalance(assets[_assetId].tokenAddress) > 0, "No token available");
 
     // Check if price predicted in future x hours < (last buy - tuner)
-    if(predPrice < (assets[_assetId].lastPrice - tuner)) {
+    if(predPrice < (assets[_assetId].lastPrice.sub(tuner))) {
 
       uint value = getTokenBalance(assets[_assetId].tokenAddress);
 
@@ -179,11 +188,11 @@ contract Tradingbot {
 
       // Trade on uniswapV3
       uint amountOut = _tradeOnUniswapV3(assets[_assetId].tokenAddress, DAI, tokenBridge, value);
-      uint price = (amountOut / value);
+      uint price = amountOut.div(value);
 
 
       //Updates the availableFunds of the asset in DAI
-      assets[_assetId].availableFunds += amountOut;
+      assets[_assetId].availableFunds = assets[_assetId].availableFunds.add(amountOut);
 
       assets[_assetId].lastPrice = price;
 
@@ -197,7 +206,7 @@ contract Tradingbot {
     require(assets[_assetId].availableFunds > 0, "No funds available");
 
     // Check if price predicted in future x hours < (last buy - tuner)
-    if(predPrice > (assets[_assetId].lastPrice + tuner)) {
+    if(predPrice > (assets[_assetId].lastPrice.add(tuner))) {
 
       uint value = assets[_assetId].availableFunds;
 
@@ -212,10 +221,10 @@ contract Tradingbot {
 
       // Trade on uniswapV3
       uint amountOut = _tradeOnUniswapV3(DAI, assets[_assetId].tokenAddress, tokenBridge, value);
-      uint price = (value / amountOut);
+      uint price = value.div(amountOut);
 
       //Updates the availableFunds of the asset in DAI
-      assets[_assetId].availableFunds -= value;
+      assets[_assetId].availableFunds = assets[_assetId].availableFunds.sub(value);
 
       assets[_assetId].lastPrice = price;
 
@@ -224,7 +233,7 @@ contract Tradingbot {
   //
 
   // 7. Liquidate portfolio and return money to investors
-  function liquidatePortfolio () external payable onlyOwner() {
+  function liquidatePortfolio () external payable onlyOwner() nonReentrant {
 
 
     for(uint i; i < nextAssetId; i++) {
@@ -312,7 +321,7 @@ contract Tradingbot {
         tokenOut: _tokenOut,
         fee: poolFees.fee1,
         recipient: address(this),
-        deadline: block.timestamp + 15,
+        deadline: block.timestamp.add(15),
         amountIn: _amountIn,
         amountOutMinimum: 1,
         sqrtPriceLimitX96: 0
@@ -349,7 +358,7 @@ contract Tradingbot {
       ISwapRouter.ExactInputParams memory params1 = ISwapRouter.ExactInputParams({
         path: abi.encodePacked(_tokenIn, poolFees.fee2, _tokenBridge, poolFees.fee3, _tokenOut),
         recipient: address(this),
-        deadline: block.timestamp + 15,
+        deadline: block.timestamp.add(15),
         amountIn: _amountIn,
         amountOutMinimum: 1
       });
@@ -368,6 +377,9 @@ contract Tradingbot {
 
   // swap DAI to WETH, then iterate over the nextInvestorId and refund the contract balance to the investors in relation to their shares
   function _refundInvestors() public payable {
+    require(protect == false, "Protection activated");
+    protect = true;
+
     if (getTokenBalance(DAI) > 0) {
       uint amountIn = getTokenBalance(DAI);
       uint amountOut = _tradeOnUniswapV3(DAI, WETH, UNI, amountIn);
@@ -385,6 +397,8 @@ contract Tradingbot {
       uint _refund = _totalFunds * shares[investors[i]] / totalShares;
       payable(investors[i]).transfer(_refund);
     }
+
+    protect = false;
 
   }
 
@@ -418,9 +432,5 @@ contract Tradingbot {
     require(block.timestamp < contributionEnd, "Time over");
     _;
   }
-
-  fallback (bytes calldata _input) external payable returns (bytes memory _output) {}
-
-  receive() external payable {}
 
 }
