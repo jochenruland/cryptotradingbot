@@ -66,7 +66,6 @@ describe('Testing Tradingbot_v2', () => {
     assert.ok(contractInstance.options.address);
   });
 
-/*
   it('Initializes account[0] as the owner', async () => {
     const owner = await contractInstance.methods.owner().call();
     console.log(accounts[0], owner);
@@ -75,17 +74,13 @@ describe('Testing Tradingbot_v2', () => {
 
   it('Initializes tradingsbot, allows to contribute from different accounts and swaps Ether to Dai', async () => {
 
-
     await contractInstance.methods._reset().send({
       from: accounts[0]
     });
 
-
-
     await contractInstance.methods.initialize(100, 70).send({
       from: accounts[0]
     });
-
 
     const min = await contractInstance.methods.minAmount().call();
     console.log("Minimum Amount: ", min);
@@ -126,7 +121,7 @@ describe('Testing Tradingbot_v2', () => {
     }
   });
 
-  it("Check initial state of all state variables", async () => {
+  it("Checks initial state of all state variables", async () => {
     const contractState = await contractInstance.methods.currentState().call();
     console.log("Contract State: ", contractState);
 
@@ -161,29 +156,6 @@ describe('Testing Tradingbot_v2', () => {
   });
 
 
-
-/*
-  // This test will only work on local testing environment as you cannot advance time of a public BC
-    it('No longer allows contribution after contribution period is over', async () => {
-
-      await contractInstance.methods._reset().send({
-        from: accounts[0]
-      });
-
-      const contractState = await contractInstance.methods.currentState().call();
-      console.log(contractState);
-
-      await contractInstance.methods.initialize(100, 120).send({
-        from: accounts[0]
-      });
-
-      await time.increase(time.duration.seconds(30));
-      console.log("Get up to here");
-      await expectRevert(contractInstance.methods.contribute().send({from: accounts[1], value: '1000'}), 'Time over');
-    });
-
-
-
   it('Buys an initial asset if pool exists', async () => {
 
     await contractInstance.methods._reset().send({
@@ -196,7 +168,6 @@ describe('Testing Tradingbot_v2', () => {
     await contractInstance.methods.initialize(100, 70).send({
       from: accounts[0]
     });
-
 
     await contractInstance.methods.contribute().send({
       from: accounts[0],
@@ -213,12 +184,10 @@ describe('Testing Tradingbot_v2', () => {
       value: '1000'
     });
 
-
     let balance5 = await contractInstance.methods.getTokenBalance('0x5592EC0cfb4dbc12D3aB100b257153436a1f0FEa').call();
     balance5 = parseInt(balance5);
     console.log("Balance after second contribution: ", balance4);
     assert(balance5 > balance4);
-
 
     await sleep(70000).then(console.log("Pause finished"));
 
@@ -227,7 +196,6 @@ describe('Testing Tradingbot_v2', () => {
 
     const balance6 = await contractInstance.methods.getTokenBalance('0x1f9840a85d5aF5bf1D1762F925BDADdC4201F984').call();
     console.log("Balance of UNI: ", balance6);
-
 
   });
 
@@ -242,17 +210,13 @@ describe('Testing Tradingbot_v2', () => {
 
     console.log(assetToSell);
 
-
-
     const artSellPrediction = parseInt(assetToSell[3]) - 100;
-
-
 
     await contractInstance.methods.sellToken(0, artSellPrediction, 3).send({from: accounts[0]});
 
   });
 
-*/
+
   it('Buys the initial asset if prediction above asset.price', async () => {
 
     const assetToBuy = await contractInstance.methods.assets(0).call();
@@ -263,11 +227,13 @@ describe('Testing Tradingbot_v2', () => {
 
   });
 
-  /*
+
   it('Liquidates portfolio and resets state variables', async () => {
 
-  });
-  */
+    await contractInstance.methods.liquidatePortfolio().send({from: accounts[0]});
+    const totalShares = await contractInstance.methods.totalShares().call();
+    assert(totalShares == 0);
 
+  });
 
 })
